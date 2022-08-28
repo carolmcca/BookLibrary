@@ -26,7 +26,7 @@ public class Menu {
 
     public Menu(){
         AddBook addBook = new AddBook();
-        Scene sceneOp1 = addBook.create();
+        this.sceneOp1 = addBook.create();
     }
 
     private Button createButton(String text, int id){
@@ -46,7 +46,7 @@ public class Menu {
         text.setTextAlignment(TextAlignment.CENTER);
 
         this.button1 = this.createButton("Adicionar Livro", 1);
-        button1.setOnAction(e -> {stage.setScene(this.sceneOp1); stage.show();});
+        this.button1.setOnAction(e -> {stage.setScene(this.sceneOp1);stage.show();});
         this.button2 = this.createButton("Remover Livro", 2);
         this.button3 = this.createButton("Emprestar livro", 3);
         this.button4 = this.createButton("Alterar localização de um livro", 4);
