@@ -13,7 +13,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class Option1Drawer {
+public class AddBook {
     private Text pageTitle;
     private TextField titleControl;
     private TextField authorControl;
@@ -40,35 +40,30 @@ public class Option1Drawer {
         return title;
     }
 
-    public Option1Drawer(){
+    private Text createMsg(String text){
+        Text msg = new Text(text);
+        msg.setFill(Color.SANDYBROWN);
+        msg.setFont(Font.font("Arial Narrow", 15));
+        return msg;
+    }
+
+    public AddBook(){}
+
+    public Scene create(){
         this.pageTitle = new Text();
         this.pageTitle.setText("Adicionar Livro");
+        this.pageTitle.setFill(Color.SANDYBROWN);
         this.pageTitle.setFont(Font.font("Arial Black", 20));
         this.pageTitle.relocate(180, 20);
 
-        this.titleMsg = new Text("Título:");
-        //this.titleMsg.relocate(30, 70);
-        this.titleMsg.setFill(Color.SANDYBROWN);
-        this.titleMsg.setFont(Font.font("Arial Narrow", 15));
-
+        this.titleMsg = this.createMsg("Título:");
         this.titleControl = new TextField();
-        this.titleControl.relocate(100, 70);
 
-        this.authorMsg = new Text("Autor(es):");
-        //this.authorMsg.relocate(30, 110);
-        this.authorMsg.setFill(Color.SANDYBROWN);
-        this.authorMsg.setFont(Font.font("Arial Narrow", 15));
-
+        this.authorMsg = this.createMsg("Autor(es):");
         this.authorControl = new TextField();
-        //this.authorControl.relocate(100, 110);
 
-        this.editionMsg = new Text("Edição:");
-        //this.authorMsg.relocate(30, 110);
-        this.editionMsg.setFill(Color.SANDYBROWN);
-        this.editionMsg.setFont(Font.font("Arial Narrow", 15));
-
+        this.editionMsg = this.createMsg("Edição:");
         this.editionControl = new TextField();
-        //this.authorControl.relocate(100, 110);
 
         this.submitButton = new Button();
         this.submitButton.setText("Adicionar Livro");
@@ -95,6 +90,8 @@ public class Option1Drawer {
         this.layout = new Group();
         this.layout.getChildren().addAll(this.pageTitle, this.hBox, this.submitButton);
         this.scene = new Scene(this.layout, 500, 500, Color.LIGHTGOLDENRODYELLOW);
+
+        return this.scene;
     }
 
     public static void draw(Stage stage, Scene scene){
