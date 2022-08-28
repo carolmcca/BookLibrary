@@ -31,9 +31,6 @@ public class Application extends javafx.application.Application {
     @Override
     public void start(Stage stage) throws Exception {
 
-        AddBook addBook = new AddBook();
-
-
         stage.setTitle("Biblioteca Pessoal");
         Menu menu = new Menu();
         Scene scene = menu.create(stage);

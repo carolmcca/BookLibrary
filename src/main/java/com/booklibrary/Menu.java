@@ -27,9 +27,11 @@ public class Menu {
     public Menu(){
         AddBook addBook = new AddBook();
         this.sceneOp1 = addBook.create();
+        RemoveBook removeBook = new RemoveBook();
+        this.sceneOp2 = removeBook.create();
     }
 
-    private Button createButton(String text, int id){
+    private Button createButton(String text){
         Button button = new Button(text);
         button.setTextFill(Color.LIGHTGOLDENRODYELLOW);
         button.setStyle("-fx-background-color: SandyBrown");
@@ -45,12 +47,16 @@ public class Menu {
         text.setFill(Color.SANDYBROWN);
         text.setTextAlignment(TextAlignment.CENTER);
 
-        this.button1 = this.createButton("Adicionar Livro", 1);
+        this.button1 = this.createButton("Adicionar Livro");
         this.button1.setOnAction(e -> {stage.setScene(this.sceneOp1);stage.show();});
-        this.button2 = this.createButton("Remover Livro", 2);
-        this.button3 = this.createButton("Emprestar livro", 3);
-        this.button4 = this.createButton("Alterar localização de um livro", 4);
-        this.button5 = this.createButton("Alterar especificações de um livro", 5);
+        this.button2 = this.createButton("Remover Livro");
+        this.button2.setOnAction(e -> {stage.setScene(this.sceneOp2);stage.show();});
+        this.button3 = this.createButton("Emprestar livro");
+        this.button3.setOnAction(e -> {stage.setScene(this.sceneOp3);stage.show();});
+        this.button4 = this.createButton("Alterar localização de um livro");
+        this.button4.setOnAction(e -> {stage.setScene(this.sceneOp4);stage.show();});
+        this.button5 = this.createButton("Alterar especificações de um livro");
+        this.button5.setOnAction(e -> {stage.setScene(this.sceneOp5);stage.show();});
 
         VBox vBox = new VBox(text, button1, button2, button3, button4, button5);
         vBox.setSpacing(10);
