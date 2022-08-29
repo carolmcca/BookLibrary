@@ -1,12 +1,20 @@
-package model;
+package com.booklibrary.model;
 
-public class Book {
+public class Book implements Comparable{
     private String title;
     private String author;
-    private int edition;
-    private int year;
+    private Integer edition;
+    private Integer year;
     private Person owner;
     private Place place;
+
+    public Book(String title, String author, Integer edition, Integer year, Place place) {
+        this.title = title;
+        this.author = author;
+        this.edition = edition;
+        this.year = year;
+        this.place = place;
+    }
 
     public void setTitle(String title) {
         this.title = title;
@@ -34,10 +42,10 @@ public class Book {
         return author;
     }
 
-    public int getEdition() {
+    public Integer getEdition() {
         return edition;
     }
-    public int getYear() {
+    public Integer getYear() {
         return year;
     }
     public Person getOwner() {
@@ -45,5 +53,15 @@ public class Book {
     }
     public Place getPlace() {
         return place;
+    }
+
+    @Override
+    public String toString() {
+        return this.title + ";" +  this.author + ";" + this.edition + ";" + this.year + ";" + this.place;
+    }
+
+    @Override
+    public int compareTo(Object book) {
+        return this.title.compareTo(((Book)book).title);
     }
 }

@@ -1,20 +1,20 @@
 package com.booklibrary;
 
+import com.booklibrary.model.Book;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
-public class RemoveBook {
+public class RemoveBook extends Menu {
 
-    private model.Book book;
+    private Book book;
     private Text pageTitle;
     private Text titleMsg;
     private TextField titleControl;
@@ -24,7 +24,12 @@ public class RemoveBook {
     private Group layout;
     private Scene scene;
 
-    public Scene create(){
+    public RemoveBook() {
+        this.title = "Remover Livro";
+    }
+
+    @Override
+    public Scene create(Stage stage){
         this.pageTitle = new Text();
         this.pageTitle.setText("Remover Livro");
         this.pageTitle.setFill(Color.SANDYBROWN);
@@ -43,7 +48,6 @@ public class RemoveBook {
         this.searchButton.setFont(Font.font("Arial Narrow", 15));
         this.searchButton.setOnAction(e -> {
             System.out.println(this.titleControl.getText());});
-
 
         this.hBox = new HBox(this.titleMsg, this.titleControl, this.searchButton);
         this.hBox.setSpacing(20);

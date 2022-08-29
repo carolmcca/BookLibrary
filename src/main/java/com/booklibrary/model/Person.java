@@ -1,4 +1,4 @@
-package model;
+package com.booklibrary.model;
 
 public class Person {
     private String name;
