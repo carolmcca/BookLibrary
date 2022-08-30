@@ -1,6 +1,7 @@
-package com.booklibrary;
+package com.booklibrary.pages;
 
 import com.booklibrary.model.Book;
+import com.booklibrary.pages.Page;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -12,7 +13,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class RemoveBook extends Menu {
+public class RemoveBookPage extends Page {
 
     private Book book;
     private Text pageTitle;
@@ -24,7 +25,7 @@ public class RemoveBook extends Menu {
     private Group layout;
     private Scene scene;
 
-    public RemoveBook() {
+    public RemoveBookPage() {
         this.title = "Remover Livro";
     }
 

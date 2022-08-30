@@ -1,4 +1,4 @@
-package com.booklibrary;
+package com.booklibrary.pages;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -7,7 +7,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public abstract class Menu implements Command {
+public abstract class Page implements Command {
     protected Scene scene;
     protected String title;
 
@@ -19,8 +19,8 @@ public abstract class Menu implements Command {
 
     public abstract Scene create(Stage stage);
 
-    protected Button createButton(Stage stage){
-        Button button = new Button(this.title);
+    protected Button createButton(Stage stage, String text){
+        Button button = new Button(text);
         button.setTextFill(Color.LIGHTGOLDENRODYELLOW);
         button.setStyle("-fx-background-color: SandyBrown");
         button.setFont(Font.font("Arial Narrow", 15));
@@ -42,5 +42,9 @@ public abstract class Menu implements Command {
         pageTitle.setFont(Font.font("Arial Black", 20));
         pageTitle.relocate(180, 20);
         return pageTitle;
+    }
+
+    protected String getTitle(){
+        return this.title;
     }
 }

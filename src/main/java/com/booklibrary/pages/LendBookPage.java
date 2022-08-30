@@ -1,11 +1,11 @@
-package com.booklibrary;
+package com.booklibrary.pages;
 
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class LendBook extends Menu{
+public class LendBookPage extends Page {
 
-    public LendBook() {
+    public LendBookPage() {
         this.title = "Emprestar livro";
     }
 

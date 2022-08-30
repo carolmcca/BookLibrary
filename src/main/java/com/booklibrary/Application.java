@@ -2,6 +2,7 @@ package com.booklibrary;
 
 import com.booklibrary.model.Book;
 import com.booklibrary.model.Place;
+import com.booklibrary.pages.MainPage;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -23,7 +24,7 @@ public class Application {
     public void init(Stage stage) {
         stage.setTitle("Biblioteca Pessoal");
         this.loadBooks();
-        MainMenu mainMenu = new MainMenu(books);
+        MainPage mainMenu = new MainPage(books);
         mainMenu.execute(stage);
     }
     public void end() {
@@ -31,7 +32,7 @@ public class Application {
     }
 
     private Place loadPlace(String place) {
-        String[] attributes = place.split("\\|");
+        String[] attributes = place.split("\\|", -1);
         return new Place(attributes[0], attributes[1], attributes[2], attributes[3]);
     }
     private void loadBooks() {
@@ -41,8 +42,14 @@ public class Application {
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
                 String[] attributes = data.split(";");
+
                 Place place = loadPlace(attributes[4]);
-                Book book = new Book(attributes[0], attributes[1], Integer.parseInt(attributes[2]) , Integer.parseInt(attributes[3]), place);
+                String title = isNull(attributes[0]) ? null : attributes[0];
+                String author = isNull(attributes[1]) ? null : attributes[1];
+                Integer edition = isNull(attributes[2]) ? null : Integer.parseInt(attributes[2]);
+                Integer year = isNull(attributes[3]) ? null : Integer.parseInt(attributes[3]);
+                Book book = new Book(title, author, edition, year, place);
+
                 this.books.add(book);
             }
             myReader.close();
@@ -77,4 +84,9 @@ public class Application {
             e.printStackTrace();
         }
     }
+
+    private boolean isNull(String s) {
+        return s.equals("null");
+    }
+
 }

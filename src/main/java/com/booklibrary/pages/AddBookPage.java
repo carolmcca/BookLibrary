@@ -1,4 +1,4 @@
-package com.booklibrary;
+package com.booklibrary.pages;
 
 import com.booklibrary.model.Book;
 import javafx.geometry.Insets;
@@ -15,10 +15,10 @@ import javafx.stage.Stage;
 
 import java.util.Set;
 
-public class AddBook extends Menu {
+public class AddBookPage extends Page {
     private final Set<Book> books;
 
-    public AddBook(Set<Book> books) {
+    public AddBookPage(Set<Book> books) {
         this.title = "Adicionar Livro";
         this.books = books;
     }
@@ -39,17 +39,29 @@ public class AddBook extends Menu {
         Text yearMsg = this.createText("Ano de publicação:");
         TextField yearControl = new TextField();
 
-        Menu addBookSubmit = new AddBookSubmit(books);
-        Button submitButton = addBookSubmit.createButton(stage);
+        Text addressMsg = this.createText("Morada:");
+        TextField addressControl = new TextField("Rua de Bustes");
+
+        Text roomMsg = this.createText("Divisão:");
+        TextField roomControl = new TextField();
+
+        Text cabinetMsg = this.createText("Armário:");
+        TextField cabinetControl = new TextField();
+
+        Text shelfMsg = this.createText("Prateleira:");
+        TextField shelfControl = new TextField();
+
+        Page addBookSubmit = new AddBookSubmitPage(books);
+        Button submitButton = addBookSubmit.createButton(stage, "Adicionar livro");
         submitButton.relocate(350, 420);
 
-        VBox msgs = new VBox(titleMsg, authorMsg, editionMsg, yearMsg);
+        VBox msgs = new VBox(titleMsg, authorMsg, editionMsg, yearMsg, addressMsg, roomMsg, cabinetMsg, shelfMsg);
         msgs.setAlignment(Pos.CENTER_LEFT);
-        msgs.setSpacing(30);
+        msgs.setSpacing(25);
 
-        VBox controls = new VBox(titleControl, authorControl, editionControl, yearControl);
+        VBox controls = new VBox(titleControl, authorControl, editionControl, yearControl, addressControl, roomControl, cabinetControl, shelfControl);
         controls.setAlignment(Pos.CENTER_LEFT);
-        controls.setSpacing(30);
+        controls.setSpacing(20);
 
         HBox hBox = new HBox(msgs, controls);
         hBox.setSpacing(10);

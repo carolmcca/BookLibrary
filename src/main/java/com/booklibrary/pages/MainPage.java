@@ -1,4 +1,4 @@
-package com.booklibrary;
+package com.booklibrary.pages;
 
 import com.booklibrary.model.Book;
 import javafx.geometry.Insets;
@@ -18,13 +18,13 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
-public class MainMenu extends Menu{
-    private final List<Menu> options;
+public class MainPage extends Page {
+    private final List<Page> options;
     private final List<Button> buttons;
 
-    public MainMenu(Set<Book> books){
+    public MainPage(Set<Book> books){
         this.title = "Bem-vindo à sua biblioteca pessoal\nSelecione uma ação";
-        this.options = Arrays.asList(new AddBook(books), new RemoveBook());
+        this.options = Arrays.asList(new AddBookPage(books), new RemoveBookPage());
         this.buttons = new ArrayList<>();
     }
 
@@ -36,8 +36,8 @@ public class MainMenu extends Menu{
         text.setFill(Color.SANDYBROWN);
         text.setTextAlignment(TextAlignment.CENTER);
 
-        for (Menu menu : this.options) {
-            this.buttons.add(menu.createButton(stage));
+        for (Page page : this.options) {
+            this.buttons.add(page.createButton(stage, page.getTitle()));
         }
         // this.button4 = this.createButton("Alterar localização de um livro");
         // this.button5 = this.createButton("Alterar especificações de um livro");
@@ -52,5 +52,6 @@ public class MainMenu extends Menu{
         layout.getChildren().add(vBox);
 
         this.scene = new Scene(layout, 500, 500, Color.LIGHTGOLDENRODYELLOW);
-        return scene;    }
+        return scene;
+    }
 }

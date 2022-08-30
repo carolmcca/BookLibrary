@@ -1,4 +1,4 @@
-package com.booklibrary;
+package com.booklibrary.pages;
 
 import javafx.stage.Stage;
 
