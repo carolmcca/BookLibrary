@@ -2,6 +2,7 @@ package com.booklibrary.pages;
 
 import com.booklibrary.model.Book;
 import com.booklibrary.model.BookOccurrences;
+import com.booklibrary.model.Place;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -13,8 +14,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -73,14 +72,16 @@ public class SearchBookPage extends Page {
         //String field = ((TextField)((HBox)stage.getScene().getRoot().getChildrenUnmodifiable().get(1)).getChildren().get(1)).getText();
         List<Book> searchedBooks = this.searchBooks(field, this.books);
         TableView<Book> table = this.showBooks(searchedBooks);
-        stage.getScene().getRoot().getChildrenUnmodifiable().add(table);
+        ((Group)stage.getScene().getRoot()).getChildren().add(table);
         stage.setScene(scene);
         stage.show();
     }
 
     private TableView<Book> showBooks(List<Book> books){
         TableView<Book> table = new TableView<Book>();
-        ObservableList<Book> bookObservableList = FXCollections.observableArrayList(books);
+
+        // ObservableList<Book> bookObservableList = FXCollections.observableArrayList(books);
+        ObservableList<Book> bookObservableList = FXCollections.observableArrayList(new Book("title", "authot", 3, 4, new Place("asdf", null, null, null)));
 
         TableColumn titleCol = new TableColumn("Title");
         titleCol.setCellValueFactory(new PropertyValueFactory<Book, String>("title"));

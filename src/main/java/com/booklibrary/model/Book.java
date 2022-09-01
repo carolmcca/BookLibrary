@@ -1,26 +1,28 @@
 package com.booklibrary.model;
 
+import javafx.beans.property.SimpleStringProperty;
+
 public class Book implements Comparable{
-    private String title;
-    private String author;
+    private SimpleStringProperty title;
+    private SimpleStringProperty author;
     private Integer edition;
     private Integer year;
     private Person owner;
     private Place place;
 
     public Book(String title, String author, Integer edition, Integer year, Place place) {
-        this.title = title;
-        this.author = author;
+        this.title = new SimpleStringProperty(title);
+        this.author = new SimpleStringProperty(author);
         this.edition = edition;
         this.year = year;
         this.place = place;
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        this.title.set(title);
     }
     public void setAuthor(String author) {
-        this.author = author;
+        this.author.set(author);
     }
     public void setEdition(int edition) {
         this.edition = edition;
@@ -36,10 +38,10 @@ public class Book implements Comparable{
     }
 
     public String getTitle() {
-        return title;
+        return title.get();
     }
     public String getAuthor() {
-        return author;
+        return author.get();
     }
 
     public Integer getEdition() {
@@ -62,6 +64,6 @@ public class Book implements Comparable{
 
     @Override
     public int compareTo(Object book) {
-        return this.title.compareTo(((Book)book).title);
+        return this.title.get().compareTo(((Book)book).title.get());
     }
 }
