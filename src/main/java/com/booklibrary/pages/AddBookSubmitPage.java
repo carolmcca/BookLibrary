@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -53,7 +54,7 @@ public class AddBookSubmitPage extends Page {
 
     @Override
     public Scene create(Stage stage) {
-        Text text = new Text("O seu livro foi adicionado com sucesso!");
+        Text text = this.createText("O seu livro foi adicionado com sucesso!");
         Text pageTitle = this.createTitle();
         AddBookPage addBookPage = new AddBookPage(this.books);
         MainPage mainPage = new MainPage(this.books);
@@ -70,7 +71,7 @@ public class AddBookSubmitPage extends Page {
 
         Group layout = new Group(pageTitle,vBox);
 
-        return new Scene(layout);
+        return new Scene(layout, Color.LIGHTGOLDENRODYELLOW);
 
     }
 }

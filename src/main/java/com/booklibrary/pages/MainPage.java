@@ -24,7 +24,7 @@ public class MainPage extends Page {
 
     public MainPage(Set<Book> books){
         this.title = "Bem-vindo à sua biblioteca pessoal\nSelecione uma ação";
-        this.options = Arrays.asList(new AddBookPage(books), new RemoveBookPage());
+        this.options = Arrays.asList(new AddBookPage(books), new SearchBookPage(books));
         this.buttons = new ArrayList<>();
     }
 
