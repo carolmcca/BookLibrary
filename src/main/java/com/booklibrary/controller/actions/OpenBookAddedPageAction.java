@@ -5,8 +5,8 @@ import com.booklibrary.view.pages.BookAddedPage;
 
 import java.util.Set;
 
-public class OpenBookAddedPage extends ButtonAction{
-    public OpenBookAddedPage(Set<Book> books) {
+public class OpenBookAddedPageAction extends ButtonAction{
+    public OpenBookAddedPageAction(Set<Book> books) {
         this.buttonText = "Livro Adicionado";
         this.page = new BookAddedPage(books);
     }

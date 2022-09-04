@@ -2,7 +2,7 @@ package com.booklibrary.view.pages;
 
 import com.booklibrary.controller.actions.AddBookAction;
 import com.booklibrary.controller.actions.CompositeAction;
-import com.booklibrary.controller.actions.OpenBookAddedPage;
+import com.booklibrary.controller.actions.OpenBookAddedPageAction;
 import com.booklibrary.model.Book;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -56,7 +56,7 @@ public class AddBookPage extends Page {
 
         CompositeAction compositeAction = new CompositeAction();
         compositeAction.add(new AddBookAction(books));
-        compositeAction.add(new OpenBookAddedPage(books));
+        compositeAction.add(new OpenBookAddedPageAction(books));
         Button submitButton = compositeAction.createButton(stage, "Adicionar Livro");
         submitButton.relocate(350, 420);
 

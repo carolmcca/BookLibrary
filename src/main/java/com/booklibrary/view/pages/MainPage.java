@@ -48,7 +48,6 @@ public class MainPage extends Page {
         Group layout = new Group();
         layout.getChildren().add(vBox);
 
-        this.scene = new Scene(layout, 500, 500, Color.LIGHTGOLDENRODYELLOW);
-        return scene;
+        return new Scene(layout, 500, 500, Color.LIGHTGOLDENRODYELLOW);
     }
 }

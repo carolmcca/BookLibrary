@@ -45,6 +45,5 @@ public class BookAddedPage extends Page {
         Group layout = new Group(pageTitle,vBox);
 
         return new Scene(layout, Color.LIGHTGOLDENRODYELLOW);
-
     }
 }

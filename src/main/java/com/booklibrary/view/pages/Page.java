@@ -7,7 +7,6 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public abstract class Page {
-    protected Scene scene;
     protected String title;
 
     public abstract Scene create(Stage stage);
@@ -25,9 +24,5 @@ public abstract class Page {
         pageTitle.setFont(Font.font("Arial Black", 20));
         pageTitle.relocate(180, 20);
         return pageTitle;
-    }
-
-    protected String getTitle(){
-        return this.title;
     }
 }

@@ -1,6 +1,7 @@
 package com.booklibrary.view.pages;
 
 import com.booklibrary.controller.actions.ButtonAction;
+import com.booklibrary.controller.actions.OpenBookDetailsPageAction;
 import com.booklibrary.controller.actions.SearchBookAction;
 import com.booklibrary.model.Book;
 import javafx.collections.FXCollections;
@@ -8,10 +9,7 @@ import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -43,22 +41,32 @@ public class SearchBookPage extends Page {
         hBox.setSpacing(20);
         hBox.setPadding(new Insets(100));
 
-        TableView<Book> table = this.buildBooksTable(this.books.stream().toList());
+        TableView<Book> table = this.buildBooksTable(stage, this.books.stream().toList());
 
         VBox vBox = new VBox(hBox, table);
 
         Group layout = new Group(pageTitle, vBox);
-        this.scene = new Scene(layout, 500, 500);
-        return this.scene;
+        return new Scene(layout, 500, 500);
     }
 
-    private TableView<Book> buildBooksTable(List<Book> books){
+    private TableView<Book> buildBooksTable(Stage stage, List<Book> books){
         TableView<Book> table = new TableView<>();
         TableColumn titleCol = new TableColumn("Title");
         titleCol.setCellValueFactory(new PropertyValueFactory<Book, String>("title"));
         TableColumn authorCol = new TableColumn("Author");
         authorCol.setCellValueFactory(new PropertyValueFactory<Book, String>("author"));
         table.getColumns().addAll(titleCol, authorCol);
+
+        table.setRowFactory(tv -> {
+            TableRow<Book> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
+                    Book book = row.getItem();
+                    new OpenBookDetailsPageAction(book, this.books).execute(stage);
+                }
+            });
+            return row ;
+        });
 
         ObservableList<Book> bookObservableList = FXCollections.observableArrayList(books);
         table.setItems(bookObservableList);
