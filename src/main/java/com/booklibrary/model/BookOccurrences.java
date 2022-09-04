@@ -1,8 +1,8 @@
 package com.booklibrary.model;
 
-public class BookOccurrences implements Comparable{
-    private Book book;
-    private int occurrences;
+public class BookOccurrences implements Comparable<BookOccurrences> {
+    private final Book book;
+    private final int occurrences;
 
     public BookOccurrences(Book book, int occurrences) {
         this.book = book;
@@ -15,15 +15,13 @@ public class BookOccurrences implements Comparable{
     public int getOccurrences() {
         return occurrences;
     }
-
-
+    
     @Override
-    public int compareTo(Object aux) {
-        BookOccurrences o = (BookOccurrences) aux;
+    public int compareTo(BookOccurrences o) {
         if (this.occurrences < o.occurrences)
             return -1;
         else if (this.occurrences > o.occurrences)
             return 1;
-        return 0;
+        return this.book.compareTo(o.book);
     }
 }

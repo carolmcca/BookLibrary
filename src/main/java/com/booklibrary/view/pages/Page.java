@@ -1,33 +1,16 @@
-package com.booklibrary.pages;
+package com.booklibrary.view.pages;
 
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public abstract class Page implements Command {
+public abstract class Page {
     protected Scene scene;
     protected String title;
 
-    @Override
-    public void execute(Stage stage) {
-        stage.setScene(this.create(stage));
-        stage.show();
-    }
-
     public abstract Scene create(Stage stage);
-
-    protected Button createButton(Stage stage, String text){
-        Button button = new Button(text);
-        button.setTextFill(Color.LIGHTGOLDENRODYELLOW);
-        button.setStyle("-fx-background-color: SandyBrown");
-        button.setFont(Font.font("Arial Narrow", 15));
-
-        button.setOnAction(e -> this.execute(stage));
-        return button;
-    }
 
     protected Text createText(String t){
         Text text = new Text(t);

@@ -1,5 +1,8 @@
-package com.booklibrary.pages;
+package com.booklibrary.view.pages;
 
+import com.booklibrary.controller.actions.AddBookAction;
+import com.booklibrary.controller.actions.CompositeAction;
+import com.booklibrary.controller.actions.OpenBookAddedPage;
 import com.booklibrary.model.Book;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -51,8 +54,10 @@ public class AddBookPage extends Page {
         Text shelfMsg = this.createText("Prateleira:");
         TextField shelfControl = new TextField();
 
-        Page addBookSubmit = new AddBookSubmitPage(books);
-        Button submitButton = addBookSubmit.createButton(stage, "Adicionar livro");
+        CompositeAction compositeAction = new CompositeAction();
+        compositeAction.add(new AddBookAction(books));
+        compositeAction.add(new OpenBookAddedPage(books));
+        Button submitButton = compositeAction.createButton(stage, "Adicionar Livro");
         submitButton.relocate(350, 420);
 
         VBox msgs = new VBox(titleMsg, authorMsg, editionMsg, yearMsg, addressMsg, roomMsg, cabinetMsg, shelfMsg);

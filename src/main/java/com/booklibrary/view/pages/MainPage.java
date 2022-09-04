@@ -1,5 +1,8 @@
-package com.booklibrary.pages;
+package com.booklibrary.view.pages;
 
+import com.booklibrary.controller.actions.ButtonAction;
+import com.booklibrary.controller.actions.OpenAddBookPageAction;
+import com.booklibrary.controller.actions.OpenSearchBookPageAction;
 import com.booklibrary.model.Book;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -8,9 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
@@ -19,30 +20,26 @@ import java.util.List;
 import java.util.Set;
 
 public class MainPage extends Page {
-    private final List<Page> options;
+    private final List<ButtonAction> actions;
     private final List<Button> buttons;
 
     public MainPage(Set<Book> books){
         this.title = "Bem-vindo à sua biblioteca pessoal\nSelecione uma ação";
-        this.options = Arrays.asList(new AddBookPage(books), new SearchBookPage(books));
+        this.actions = Arrays.asList(new OpenAddBookPageAction(books), new OpenSearchBookPageAction(books));
         this.buttons = new ArrayList<>();
     }
 
     @Override
     public Scene create(Stage stage) {
-        Text text = new Text();
-        text.setText(this.title);
-        text.setFont(Font.font("Arial Narrow", 20));
-        text.setFill(Color.SANDYBROWN);
-        text.setTextAlignment(TextAlignment.CENTER);
+        Text title = this.createTitle();
 
-        for (Page page : this.options) {
-            this.buttons.add(page.createButton(stage, page.getTitle()));
+        for (ButtonAction action : this.actions) {
+            this.buttons.add(action.createButton(stage));
         }
         // this.button4 = this.createButton("Alterar localização de um livro");
         // this.button5 = this.createButton("Alterar especificações de um livro");
 
-        VBox vBox = new VBox(text);
+        VBox vBox = new VBox(title);
         vBox.getChildren().addAll(this.buttons);
         vBox.setSpacing(10);
         vBox.setAlignment(Pos.CENTER);

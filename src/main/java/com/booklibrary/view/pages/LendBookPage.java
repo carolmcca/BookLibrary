@@ -1,4 +1,4 @@
-package com.booklibrary.pages;
+package com.booklibrary.view.pages;
 
 import javafx.scene.Scene;
 import javafx.stage.Stage;
