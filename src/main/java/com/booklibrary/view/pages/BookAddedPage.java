@@ -42,16 +42,14 @@ public class BookAddedPage extends Page {
 
         HBox buttonBox = new HBox(button1, button2);
         buttonBox.setSpacing(30);
-        /*
-        VBox vBox = new VBox(text, buttonBox);
-        vBox.setAlignment(Pos.CENTER);
-        vBox.setSpacing(40);
-        vBox.setPadding(new Insets(100));
-        */
+
         borderPane.setTop(pageTitle);
         borderPane.setCenter(text);
         borderPane.setBottom(buttonBox);
 
+        BorderPane.setAlignment(pageTitle, Pos.CENTER);
+        BorderPane.setAlignment(text, Pos.CENTER);
+        BorderPane.setAlignment(buttonBox, Pos.CENTER);
         return scene;
     }
 }

@@ -72,6 +72,11 @@ public class AddBookPage extends Page {
         borderPane.setTop(pageTitle);
         borderPane.setCenter(hBox);
         borderPane.setBottom(submitButton);
+
+        BorderPane.setAlignment(pageTitle, Pos.CENTER);
+        BorderPane.setAlignment(hBox, Pos.CENTER);
+        BorderPane.setAlignment(submitButton, Pos.CENTER);
+
         return scene;
     }
 }

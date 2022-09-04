@@ -3,6 +3,7 @@ package com.booklibrary.view.pages;
 import com.booklibrary.controller.actions.OpenMainPageAction;
 import com.booklibrary.model.Book;
 import com.booklibrary.model.Place;
+import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -35,12 +36,17 @@ public class BookDetailsPage extends Page {
         Text pageTitle = this.createTitle();
 
         HBox infoHBox = new HBox(createMessagesVBox(), createInfoVBox(book));
+        infoHBox.setAlignment(Pos.CENTER);
 
         Button TODO_mainMenu = new OpenMainPageAction(this.TODO_Remove).createButton(stage);
 
         borderPane.setTop(pageTitle);
         borderPane.setCenter(infoHBox);
         borderPane.setBottom(TODO_mainMenu);
+
+        BorderPane.setAlignment(pageTitle, Pos.CENTER);
+        BorderPane.setAlignment(infoHBox, Pos.CENTER);
+        BorderPane.setAlignment(TODO_mainMenu, Pos.CENTER);
 
         return scene;
     }

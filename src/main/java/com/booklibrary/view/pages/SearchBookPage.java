@@ -7,6 +7,7 @@ import com.booklibrary.model.Book;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -45,6 +46,7 @@ public class SearchBookPage extends Page {
         HBox hBox = new HBox(searchMsg, searchControl, searchButton);
         hBox.setSpacing(20);
         hBox.setPadding(new Insets(100));
+        hBox.setAlignment(Pos.CENTER);
 
         TableView<Book> table = this.buildBooksTable(stage, this.books.stream().toList());
 
@@ -52,6 +54,9 @@ public class SearchBookPage extends Page {
 
         borderPane.setTop(pageTitle);
         borderPane.setCenter(vBox);
+
+        BorderPane.setAlignment(pageTitle, Pos.CENTER);
+        BorderPane.setAlignment(hBox, Pos.CENTER);
         return scene;
     }
 

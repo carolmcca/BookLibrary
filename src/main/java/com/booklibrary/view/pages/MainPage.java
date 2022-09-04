@@ -52,6 +52,9 @@ public class MainPage extends Page {
 
         borderPane.setTop(title);
         borderPane.setCenter(vBox);
+        BorderPane.setAlignment(title, Pos.CENTER);
+        BorderPane.setAlignment(vBox, Pos.CENTER);
+
         return scene;
     }
 }
