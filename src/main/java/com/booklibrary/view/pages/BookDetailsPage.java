@@ -7,6 +7,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -28,15 +29,20 @@ public class BookDetailsPage extends Page {
 
     @Override
     public Scene create(Stage stage) {
+        BorderPane borderPane = new BorderPane();
+        Scene scene = new Scene(borderPane, Color.LIGHTGOLDENRODYELLOW);
+
         Text pageTitle = this.createTitle();
-        Button TODO_mainMenu = new OpenMainPageAction(this.TODO_Remove).createButton(stage);
+
         HBox infoHBox = new HBox(createMessagesVBox(), createInfoVBox(book));
-        VBox vBox = new VBox(infoHBox, TODO_mainMenu);
 
-        Group layout = new Group();
-        layout.getChildren().addAll(pageTitle, vBox);
+        Button TODO_mainMenu = new OpenMainPageAction(this.TODO_Remove).createButton(stage);
 
-        return new Scene(layout, 500, 500, Color.LIGHTGOLDENRODYELLOW);
+        borderPane.setTop(pageTitle);
+        borderPane.setCenter(infoHBox);
+        borderPane.setBottom(TODO_mainMenu);
+
+        return scene;
     }
 
     private VBox createMessagesVBox() {

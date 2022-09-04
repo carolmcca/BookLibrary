@@ -1,9 +1,11 @@
 package com.booklibrary.view.pages;
 
+import javafx.geometry.VPos;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
 public abstract class Page {
@@ -22,7 +24,8 @@ public abstract class Page {
         Text pageTitle = new Text(this.title);
         pageTitle.setFill(Color.SANDYBROWN);
         pageTitle.setFont(Font.font("Arial Black", 20));
-        pageTitle.relocate(180, 20);
+        pageTitle.setTextAlignment(TextAlignment.CENTER);
+
         return pageTitle;
     }
 }

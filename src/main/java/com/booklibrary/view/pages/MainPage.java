@@ -9,6 +9,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
@@ -19,18 +20,23 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
+import static com.booklibrary.utils.Utils.centerNodeInWindow;
+
 public class MainPage extends Page {
     private final List<ButtonAction> actions;
     private final List<Button> buttons;
 
     public MainPage(Set<Book> books){
-        this.title = "Bem-vindo à sua biblioteca pessoal\nSelecione uma ação";
+        this.title = "Bem-vindo à sua biblioteca pessoal";
         this.actions = Arrays.asList(new OpenAddBookPageAction(books), new OpenSearchBookPageAction(books));
         this.buttons = new ArrayList<>();
     }
 
     @Override
     public Scene create(Stage stage) {
+        BorderPane borderPane = new BorderPane();
+        Scene scene = new Scene(borderPane, Color.LIGHTGOLDENRODYELLOW);
+
         Text title = this.createTitle();
 
         for (ButtonAction action : this.actions) {
@@ -39,15 +45,13 @@ public class MainPage extends Page {
         // this.button4 = this.createButton("Alterar localização de um livro");
         // this.button5 = this.createButton("Alterar especificações de um livro");
 
-        VBox vBox = new VBox(title);
+        VBox vBox = new VBox();
         vBox.getChildren().addAll(this.buttons);
         vBox.setSpacing(10);
         vBox.setAlignment(Pos.CENTER);
-        vBox.setPadding(new Insets(110));
 
-        Group layout = new Group();
-        layout.getChildren().add(vBox);
-
-        return new Scene(layout, 500, 500, Color.LIGHTGOLDENRODYELLOW);
+        borderPane.setTop(title);
+        borderPane.setCenter(vBox);
+        return scene;
     }
 }

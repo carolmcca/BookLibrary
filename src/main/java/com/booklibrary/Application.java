@@ -15,7 +15,9 @@ public class Application {
     }
 
     public void init(Stage stage) {
+        stage.setMaximized(true);
         stage.setTitle("Biblioteca Pessoal");
+
         Set<Book> books = databaseManager.loadBooks();
         new OpenMainPageAction(books).execute(stage);
     }

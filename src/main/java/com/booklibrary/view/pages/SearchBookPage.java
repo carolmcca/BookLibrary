@@ -11,8 +11,10 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -30,10 +32,13 @@ public class SearchBookPage extends Page {
 
     @Override
     public Scene create(Stage stage){
+        BorderPane borderPane = new BorderPane();
+        Scene scene = new Scene(borderPane, Color.LIGHTGOLDENRODYELLOW);
+
         Text pageTitle = this.createTitle();
+
         Text searchMsg = this.createText("Título");
         TextField searchControl = new TextField();
-
         ButtonAction searchBookAction = new SearchBookAction(this.books);
         Button searchButton = searchBookAction.createButton(stage, "Procurar");
 
@@ -45,8 +50,9 @@ public class SearchBookPage extends Page {
 
         VBox vBox = new VBox(hBox, table);
 
-        Group layout = new Group(pageTitle, vBox);
-        return new Scene(layout, 500, 500);
+        borderPane.setTop(pageTitle);
+        borderPane.setCenter(vBox);
+        return scene;
     }
 
     private TableView<Book> buildBooksTable(Stage stage, List<Book> books){

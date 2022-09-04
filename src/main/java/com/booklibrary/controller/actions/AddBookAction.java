@@ -3,6 +3,7 @@ package com.booklibrary.controller.actions;
 import com.booklibrary.model.Book;
 import com.booklibrary.model.Place;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -18,9 +19,10 @@ public class AddBookAction extends ButtonAction{
     }
 
     private void addBook(Stage stage) {
-        HBox hBox = (HBox) stage.getScene().getRoot().getChildrenUnmodifiable().get(1);
+        HBox hBox = (HBox) ((BorderPane)stage.getScene().getRoot()).getCenter();
         VBox vBox = (VBox) hBox.getChildren().get(1);
         var inputs = vBox.getChildren();
+
         String aux;
         String bookTitle = ((TextField)inputs.get(0)).getText();
         String bookAuthor = ((TextField)inputs.get(1)).getText();
@@ -32,6 +34,7 @@ public class AddBookAction extends ButtonAction{
         String room = ((TextField)inputs.get(5)).getText();
         String cabinet = ((TextField)inputs.get(6)).getText();
         String shelf = ((TextField)inputs.get(7)).getText();
+
         Place place = new Place(address, room, cabinet, shelf);
         Book book = new Book(bookTitle, bookAuthor, bookEdition, bookYear, place);
         this.books.add(book);
