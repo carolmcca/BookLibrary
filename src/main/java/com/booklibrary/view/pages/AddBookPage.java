@@ -3,12 +3,15 @@ package com.booklibrary.view.pages;
 import com.booklibrary.controller.actions.AddBookAction;
 import com.booklibrary.controller.actions.CompositeAction;
 import com.booklibrary.controller.actions.OpenBookAddedPageAction;
+import com.booklibrary.controller.actions.OpenMainPageAction;
 import com.booklibrary.model.Book;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 import java.util.Set;
@@ -34,13 +37,18 @@ public class AddBookPage extends BookFormPage {
         CompositeAction compositeAction = new CompositeAction();
         compositeAction.add(new AddBookAction(books));
         compositeAction.add(new OpenBookAddedPageAction(books));
-        Button submitButton = compositeAction.createButton(stage, "Adicionar Livro");
+        Button addButton = compositeAction.createButton(stage, "Adicionar Livro");
+        Button backButton = new OpenMainPageAction(this.books).createButton(stage, "Voltar");
 
-        BorderPane borderPane = (BorderPane) scene.getRoot();
-        borderPane.setBottom(submitButton);
+        HBox buttons = new HBox(backButton, addButton);
+        buttons.setSpacing(30);
+        buttons.setAlignment(Pos.CENTER);
 
-        BorderPane.setAlignment(submitButton, Pos.CENTER);
-        BorderPane.setMargin(submitButton, new Insets(50));
+        BorderPane borderPane = (BorderPane) ((ScrollPane)scene.getRoot()).getContent();
+        borderPane.setBottom(buttons);
+
+        BorderPane.setAlignment(buttons, Pos.CENTER);
+        BorderPane.setMargin(buttons, new Insets(50));
 
         return scene;
     }

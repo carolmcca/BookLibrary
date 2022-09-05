@@ -41,6 +41,7 @@ public class BookDetailsPage extends Page {
 
         HBox infoHBox = new HBox(createMessagesVBox(), createInfoVBox(book));
         infoHBox.setAlignment(Pos.CENTER);
+        infoHBox.setSpacing(40);
 
         Button mainMenuButton = new OpenMainPageAction(this.books).createButton(stage);
         Button editButton = new OpenEditBookPageAction(books, this.book).createButton(stage);
@@ -76,6 +77,7 @@ public class BookDetailsPage extends Page {
                 this.createText("Armário:"),
                 this.createText("Prateleira:")
         );
+        vBox.setSpacing(15);
         return vBox;
     }
 
@@ -91,6 +93,7 @@ public class BookDetailsPage extends Page {
                 this.createText(place.getCabinet()),
                 this.createText(place.getShelf())
         );
+        vBox.setSpacing(15);
         return vBox;
     }
 

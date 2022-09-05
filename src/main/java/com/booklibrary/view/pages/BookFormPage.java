@@ -61,6 +61,7 @@ public class BookFormPage extends Page {
         TextField cabinetControl = new TextField(this.cabinetControlText);
         Text shelfMsg = this.createText("Prateleira:");
         TextField shelfControl = new TextField(this.shelfControlText);
+        shelfControl.setPrefHeight(30);
 
 
 
