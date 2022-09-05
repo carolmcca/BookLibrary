@@ -6,7 +6,9 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 import java.util.Set;
@@ -34,12 +36,19 @@ public class EditBookPage extends BookFormPage {
         CompositeAction compositeAction = new CompositeAction();
         compositeAction.add(new EditBookAction(books, book));
         compositeAction.add(new OpenSearchBookPageAction(books));
-        Button submitButton = compositeAction.createButton(stage, "Editar Livro");
+        Button editButton = compositeAction.createButton(stage, "Editar Livro");
+        Button backButton = new OpenBookDetailsPageAction(this.book, this.books).createButton(stage, "Voltar");
 
-        BorderPane borderPane = (BorderPane) scene.getRoot();
-        borderPane.setBottom(submitButton);
-        BorderPane.setAlignment(submitButton, Pos.CENTER);
-        BorderPane.setMargin(submitButton, new Insets(50));
+        HBox buttons = new HBox(backButton, editButton);
+        buttons.setSpacing(30);
+        buttons.setAlignment(Pos.CENTER);
+
+
+        BorderPane borderPane = (BorderPane) ((ScrollPane)scene.getRoot()).getContent();
+        borderPane.setBottom(buttons);
+
+        BorderPane.setAlignment(buttons, Pos.CENTER);
+        BorderPane.setMargin(buttons, new Insets(50));
 
         return scene;
     }

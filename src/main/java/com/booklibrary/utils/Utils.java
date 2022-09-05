@@ -3,6 +3,8 @@ package com.booklibrary.utils;
 
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.paint.Color;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -45,8 +47,11 @@ public class Utils {
         return false;
     }
 
-    public static void centerNodeInWindow(Node node, Scene scene) {
-        node.layoutXProperty().bind(scene.widthProperty().subtract(node.prefWidth(-1)).divide(2));
-        //node.layoutYProperty().bind(scene.heightProperty().subtract(node.prefHeight(-1)).divide(2));
+    public static Scene setScene(Node root) {
+        ScrollPane scrollPane = new ScrollPane();
+        scrollPane.setContent(root);
+        scrollPane.setFitToHeight(true);
+        scrollPane.setFitToWidth(true);
+        return new Scene(scrollPane, Color.LIGHTGOLDENRODYELLOW);
     }
 }

@@ -9,6 +9,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -18,8 +19,10 @@ import javafx.stage.Stage;
 
 import java.util.Set;
 
+import static com.booklibrary.utils.Utils.setScene;
+
 public class BookAddedPage extends Page {
-    private Set<Book> books;
+    private final Set<Book> books;
 
     public BookAddedPage(Set<Book> books) {
         this.title = "Livro Adicionado";
@@ -29,7 +32,7 @@ public class BookAddedPage extends Page {
     @Override
     public Scene create(Stage stage) {
         BorderPane borderPane = new BorderPane();
-        Scene scene = new Scene(borderPane, Color.LIGHTGOLDENRODYELLOW);
+        Scene scene = setScene(borderPane);
 
         Text pageTitle = this.createTitle();
 
@@ -42,6 +45,7 @@ public class BookAddedPage extends Page {
 
         HBox buttonBox = new HBox(button1, button2);
         buttonBox.setSpacing(30);
+        buttonBox.setAlignment(Pos.CENTER);
 
         borderPane.setTop(pageTitle);
         borderPane.setCenter(text);
@@ -50,8 +54,10 @@ public class BookAddedPage extends Page {
         BorderPane.setAlignment(pageTitle, Pos.CENTER);
         BorderPane.setAlignment(text, Pos.CENTER);
         BorderPane.setAlignment(buttonBox, Pos.CENTER);
+
         BorderPane.setMargin(pageTitle, new Insets(50));
         BorderPane.setMargin(buttonBox, new Insets(50));
+
         return scene;
     }
 }

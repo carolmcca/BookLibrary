@@ -2,6 +2,7 @@ package com.booklibrary.controller.actions;
 
 import com.booklibrary.model.Book;
 import com.booklibrary.model.Place;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -19,7 +20,7 @@ public class AddBookAction extends ButtonAction{
     }
 
     private void addBook(Stage stage) {
-        HBox hBox = (HBox) ((BorderPane)stage.getScene().getRoot()).getCenter();
+        HBox hBox = (HBox) ((BorderPane)((ScrollPane)stage.getScene().getRoot()).getContent()).getCenter();
         VBox vBox = (VBox) hBox.getChildren().get(1);
         var inputs = vBox.getChildren();
 

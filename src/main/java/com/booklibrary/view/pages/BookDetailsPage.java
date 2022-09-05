@@ -3,12 +3,14 @@ package com.booklibrary.view.pages;
 import com.booklibrary.controller.actions.OpenDeleteBookPageAction;
 import com.booklibrary.controller.actions.OpenEditBookPageAction;
 import com.booklibrary.controller.actions.OpenMainPageAction;
+import com.booklibrary.controller.actions.OpenSearchBookPageAction;
 import com.booklibrary.model.Book;
 import com.booklibrary.model.Place;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -17,6 +19,8 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.util.Set;
+
+import static com.booklibrary.utils.Utils.setScene;
 
 public class BookDetailsPage extends Page {
     private final Book book;
@@ -32,18 +36,19 @@ public class BookDetailsPage extends Page {
     @Override
     public Scene create(Stage stage) {
         BorderPane borderPane = new BorderPane();
-        Scene scene = new Scene(borderPane, Color.LIGHTGOLDENRODYELLOW);
+        Scene scene = setScene(borderPane);
 
         Text pageTitle = this.createTitle();
 
         HBox infoHBox = new HBox(createMessagesVBox(), createInfoVBox(book));
         infoHBox.setAlignment(Pos.CENTER);
+        infoHBox.setSpacing(40);
 
-        Button mainMenuButton = new OpenMainPageAction(this.books).createButton(stage);
+        Button backButton = new OpenSearchBookPageAction(this.books).createButton(stage, "Voltar");
         Button editButton = new OpenEditBookPageAction(books, this.book).createButton(stage);
         Button deleteButton = new OpenDeleteBookPageAction(books, this.book).createButton(stage);
 
-        HBox buttons = new HBox(mainMenuButton, editButton, deleteButton);
+        HBox buttons = new HBox(backButton, editButton, deleteButton);
 
         buttons.setSpacing(30);
         buttons.setAlignment(Pos.CENTER);
@@ -67,12 +72,13 @@ public class BookDetailsPage extends Page {
                 this.createText("Título:"),
                 this.createText("Autor(es):"),
                 this.createText("Edição:"),
-                this.createText("Ano:"),
+                this.createText("Ano de publicação:"),
                 this.createText("Morada:"),
                 this.createText("Divisão:"),
                 this.createText("Armário:"),
                 this.createText("Prateleira:")
         );
+        vBox.setSpacing(15);
         return vBox;
     }
 
@@ -88,6 +94,7 @@ public class BookDetailsPage extends Page {
                 this.createText(place.getCabinet()),
                 this.createText(place.getShelf())
         );
+        vBox.setSpacing(15);
         return vBox;
     }
 

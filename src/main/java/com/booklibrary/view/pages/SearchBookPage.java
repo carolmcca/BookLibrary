@@ -2,6 +2,7 @@ package com.booklibrary.view.pages;
 
 import com.booklibrary.controller.actions.ButtonAction;
 import com.booklibrary.controller.actions.OpenBookDetailsPageAction;
+import com.booklibrary.controller.actions.OpenMainPageAction;
 import com.booklibrary.controller.actions.SearchBookAction;
 import com.booklibrary.model.Book;
 import javafx.collections.FXCollections;
@@ -22,6 +23,8 @@ import javafx.stage.Stage;
 import java.util.List;
 import java.util.Set;
 
+import static com.booklibrary.utils.Utils.setScene;
+
 public class SearchBookPage extends Page {
     private Set<Book> books;
 
@@ -34,13 +37,12 @@ public class SearchBookPage extends Page {
     @Override
     public Scene create(Stage stage){
         BorderPane borderPane = new BorderPane();
-        Scene scene = new Scene(borderPane, Color.LIGHTGOLDENRODYELLOW);
+        Scene scene = setScene(borderPane);
 
         Text pageTitle = this.createTitle();
 
         TextField searchControl = new TextField();
-        ButtonAction searchBookAction = new SearchBookAction(this.books);
-        Button searchButton = searchBookAction.createButton(stage, "Procurar");
+        Button searchButton = new SearchBookAction(this.books).createButton(stage, "Procurar");
         searchButton.setDefaultButton(true);
 
         HBox hBox = new HBox(searchControl, searchButton);
@@ -53,20 +55,27 @@ public class SearchBookPage extends Page {
         vBox.setSpacing(30);
         vBox.setAlignment(Pos.CENTER);
 
+        Button backButton = new OpenMainPageAction(this.books).createButton(stage, "Voltar");
+
         borderPane.setTop(pageTitle);
         borderPane.setCenter(vBox);
+        borderPane.setBottom(backButton);
 
         BorderPane.setAlignment(pageTitle, Pos.CENTER);
         BorderPane.setAlignment(vBox, Pos.CENTER);
+        BorderPane.setAlignment(backButton, Pos.CENTER);
+
         BorderPane.setMargin(pageTitle, new Insets(50));
+        BorderPane.setMargin(vBox, new Insets(0, 50, 0, 50));
+        BorderPane.setMargin(backButton, new Insets(50));
         return scene;
     }
 
     private TableView<Book> buildBooksTable(Stage stage, List<Book> books){
         TableView<Book> table = new TableView<>();
-        TableColumn titleCol = new TableColumn("Title");
+        TableColumn titleCol = new TableColumn("Título");
         titleCol.setCellValueFactory(new PropertyValueFactory<Book, String>("title"));
-        TableColumn authorCol = new TableColumn("Author");
+        TableColumn authorCol = new TableColumn("Autor(es)");
         authorCol.setCellValueFactory(new PropertyValueFactory<Book, String>("author"));
 
         table.getColumns().addAll(titleCol, authorCol);

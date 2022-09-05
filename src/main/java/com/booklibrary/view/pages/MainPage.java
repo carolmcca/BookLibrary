@@ -9,6 +9,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -20,7 +21,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
-import static com.booklibrary.utils.Utils.centerNodeInWindow;
+import static com.booklibrary.utils.Utils.setScene;
 
 public class MainPage extends Page {
     private final List<ButtonAction> actions;
@@ -35,7 +36,7 @@ public class MainPage extends Page {
     @Override
     public Scene create(Stage stage) {
         BorderPane borderPane = new BorderPane();
-        Scene scene = new Scene(borderPane, Color.LIGHTGOLDENRODYELLOW);
+        Scene scene = setScene(borderPane);
 
         Text title = this.createTitle();
 

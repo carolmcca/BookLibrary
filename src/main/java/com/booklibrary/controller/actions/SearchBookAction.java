@@ -5,6 +5,7 @@ import com.booklibrary.model.BookOccurrences;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Group;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
@@ -27,7 +28,7 @@ public class SearchBookAction extends ButtonAction {
 
     @Override
     public void execute(Stage stage) {
-        BorderPane borderPane = (BorderPane) stage.getScene().getRoot();
+        BorderPane borderPane = (BorderPane)((ScrollPane)stage.getScene().getRoot()).getContent();
         String field = ((TextField) ((HBox) ((VBox) borderPane.getCenter()).getChildren().get(0)).getChildren().get(0)).getText();
 
         List<Book> searchedBooks = this.searchBooks(field, this.books);
