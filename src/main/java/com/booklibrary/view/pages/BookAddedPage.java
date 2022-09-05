@@ -9,6 +9,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -27,8 +28,13 @@ public class BookAddedPage extends Page {
 
     @Override
     public Scene create(Stage stage) {
-        Text text = this.createText("O seu livro foi adicionado com sucesso!");
+        BorderPane borderPane = new BorderPane();
+        Scene scene = new Scene(borderPane, Color.LIGHTGOLDENRODYELLOW);
+
         Text pageTitle = this.createTitle();
+
+        Text text = this.createText("O seu livro foi adicionado com sucesso!");
+
         ButtonAction openAddBookPageAction = new OpenAddBookPageAction(this.books);
         ButtonAction openMainPageAction = new OpenMainPageAction(this.books);
         Button button1 = openAddBookPageAction.createButton(stage, "Adicionar novo livro");
@@ -37,13 +43,13 @@ public class BookAddedPage extends Page {
         HBox buttonBox = new HBox(button1, button2);
         buttonBox.setSpacing(30);
 
-        VBox vBox = new VBox(text, buttonBox);
-        vBox.setAlignment(Pos.CENTER);
-        vBox.setSpacing(40);
-        vBox.setPadding(new Insets(100));
+        borderPane.setTop(pageTitle);
+        borderPane.setCenter(text);
+        borderPane.setBottom(buttonBox);
 
-        Group layout = new Group(pageTitle,vBox);
-
-        return new Scene(layout, Color.LIGHTGOLDENRODYELLOW);
+        BorderPane.setAlignment(pageTitle, Pos.CENTER);
+        BorderPane.setAlignment(text, Pos.CENTER);
+        BorderPane.setAlignment(buttonBox, Pos.CENTER);
+        return scene;
     }
 }

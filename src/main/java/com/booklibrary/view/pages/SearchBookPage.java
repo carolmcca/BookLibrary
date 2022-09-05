@@ -7,12 +7,15 @@ import com.booklibrary.model.Book;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -30,23 +33,29 @@ public class SearchBookPage extends Page {
 
     @Override
     public Scene create(Stage stage){
-        Text pageTitle = this.createTitle();
-        Text searchMsg = this.createText("Título");
-        TextField searchControl = new TextField();
+        BorderPane borderPane = new BorderPane();
+        Scene scene = new Scene(borderPane, Color.LIGHTGOLDENRODYELLOW);
 
+        Text pageTitle = this.createTitle();
+
+        TextField searchControl = new TextField();
         ButtonAction searchBookAction = new SearchBookAction(this.books);
         Button searchButton = searchBookAction.createButton(stage, "Procurar");
 
-        HBox hBox = new HBox(searchMsg, searchControl, searchButton);
+        HBox hBox = new HBox(searchControl, searchButton);
         hBox.setSpacing(20);
-        hBox.setPadding(new Insets(100));
+        hBox.setAlignment(Pos.CENTER);
 
         TableView<Book> table = this.buildBooksTable(stage, this.books.stream().toList());
 
         VBox vBox = new VBox(hBox, table);
 
-        Group layout = new Group(pageTitle, vBox);
-        return new Scene(layout, 500, 500);
+        borderPane.setTop(pageTitle);
+        borderPane.setCenter(vBox);
+
+        BorderPane.setAlignment(pageTitle, Pos.CENTER);
+        BorderPane.setAlignment(hBox, Pos.CENTER);
+        return scene;
     }
 
     private TableView<Book> buildBooksTable(Stage stage, List<Book> books){

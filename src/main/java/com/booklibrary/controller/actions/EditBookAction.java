@@ -10,15 +10,17 @@ import javafx.stage.Stage;
 
 import java.util.Set;
 
-public class AddBookAction extends ButtonAction{
-    private Set<Book> books;
+public class EditBookAction extends ButtonAction {
+    private final Set<Book> books;
+    private final Book book;
 
-    public AddBookAction(Set<Book> books) {
-        this.buttonText = "Adicionar Livro";
+    public EditBookAction(Set<Book> books, Book book) {
+        super();
         this.books = books;
+        this.book = book;
     }
 
-    private void addBook(Stage stage) {
+    private void editBook(Stage stage) {
         HBox hBox = (HBox) ((BorderPane)stage.getScene().getRoot()).getCenter();
         VBox vBox = (VBox) hBox.getChildren().get(1);
         var inputs = vBox.getChildren();
@@ -36,12 +38,16 @@ public class AddBookAction extends ButtonAction{
         String shelf = ((TextField)inputs.get(7)).getText();
 
         Place place = new Place(address, room, cabinet, shelf);
-        Book book = new Book(bookTitle, bookAuthor, bookEdition, bookYear, place);
-        this.books.add(book);
+        this.book.setTitle(bookTitle);
+        this.book.setAuthor(bookAuthor);
+        this.book.setEdition(bookEdition);
+        this.book.setYear(bookYear);
+        this.book.setPlace(place);
+
     }
 
     @Override
     public void execute(Stage stage) {
-        this.addBook(stage);
+        this.editBook(stage);
     }
 }

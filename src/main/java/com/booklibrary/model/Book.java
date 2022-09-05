@@ -23,10 +23,10 @@ public class Book implements Comparable<Book>{
     public void setAuthor(String author) {
         this.author = author;
     }
-    public void setEdition(int edition) {
+    public void setEdition(Integer edition) {
         this.edition = edition;
     }
-    public void setYear(int year) {
+    public void setYear(Integer year) {
         this.year = year;
     }
     public void setOwner(Person owner) {

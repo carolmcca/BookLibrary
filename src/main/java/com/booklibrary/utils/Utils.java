@@ -1,6 +1,9 @@
 package com.booklibrary.utils;
 
 
+import javafx.scene.Node;
+import javafx.scene.Scene;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -40,5 +43,10 @@ public class Utils {
                 return true;
         }
         return false;
+    }
+
+    public static void centerNodeInWindow(Node node, Scene scene) {
+        node.layoutXProperty().bind(scene.widthProperty().subtract(node.prefWidth(-1)).divide(2));
+        //node.layoutYProperty().bind(scene.heightProperty().subtract(node.prefHeight(-1)).divide(2));
     }
 }

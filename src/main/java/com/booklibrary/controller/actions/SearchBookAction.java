@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.Group;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -26,12 +27,12 @@ public class SearchBookAction extends ButtonAction {
 
     @Override
     public void execute(Stage stage) {
-        Group layout = (Group) stage.getScene().getRoot();
-        String field = ((TextField) ((HBox) ((VBox) layout.getChildren().get(1)).getChildren().get(0)).getChildren().get(1)).getText();
+        BorderPane borderPane = (BorderPane) stage.getScene().getRoot();
+        String field = ((TextField) ((HBox) ((VBox) borderPane.getCenter()).getChildren().get(0)).getChildren().get(0)).getText();
 
         List<Book> searchedBooks = this.searchBooks(field, this.books);
         ObservableList<Book> bookObservableList = FXCollections.observableArrayList(searchedBooks);
-        TableView<Book> tableView = (TableView<Book>) ((VBox) layout.getChildren().get(1)).getChildren().get(1);
+        TableView<Book> tableView = (TableView<Book>) ((VBox) borderPane.getCenter()).getChildren().get(1);
         tableView.setItems(bookObservableList);
 
         stage.show();
