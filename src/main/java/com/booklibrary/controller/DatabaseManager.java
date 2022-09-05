@@ -30,7 +30,7 @@ public class DatabaseManager {
             Scanner myReader = new Scanner(file);
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
-                String[] attributes = data.split(";");
+                String[] attributes = data.split(";", -1);
 
                 Place place = loadPlace(attributes[4]);
                 String title = isNull(attributes[0]) ? null : attributes[0];
@@ -54,9 +54,6 @@ public class DatabaseManager {
         StringBuilder stringBuilder = new StringBuilder();
         for (Book book : books) {
             stringBuilder.append(book.toString()).append("\n");
-        }
-        for (var book : books) {
-            System.out.println(book);
         }
         writeToFile(DatabaseManager.filename, stringBuilder.toString(), false);
     }

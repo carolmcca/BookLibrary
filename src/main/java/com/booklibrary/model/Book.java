@@ -57,7 +57,11 @@ public class Book implements Comparable<Book>{
 
     @Override
     public String toString() {
-        return this.title + ";" +  this.author + ";" + this.edition + ";" + this.year + ";" + this.place;
+        return (this.title == null ? "" : this.title) + ";"
+                + (this.author == null ? "" : this.author) + ";"
+                + (this.edition == null ? "" : this.edition) + ";"
+                + (this.year == null ? "" : this.year) + ";"
+                + this.place;
     }
 
     @Override

@@ -12,7 +12,7 @@ import java.io.IOException;
 public class Utils {
 
     public static boolean isNull(String s) {
-        return s.equals("null");
+        return s.isEmpty();
     }
 
     public static void writeToFile(String filename, String text, boolean overwrite) {
@@ -30,6 +30,15 @@ public class Utils {
         } catch (IOException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
+        }
+    }
+
+    public static Integer toInteger(String s) {
+        try {
+            if (s.isBlank()) return null;
+            else return Integer.parseInt(s);
+        } catch (Exception e) {
+            return null;
         }
     }
 
