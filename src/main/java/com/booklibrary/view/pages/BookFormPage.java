@@ -25,6 +25,7 @@ public class BookFormPage extends Page {
     protected String addressControlText;
     protected String cabinetControlText;
     protected String shelfControlText;
+    protected String ownerControlText;
 
     public BookFormPage(Set<Book> books) {
         this.title = "Adicionar Livro";
@@ -45,6 +46,8 @@ public class BookFormPage extends Page {
         TextField editionControl = new TextField(this.editionControlText);
         Text yearMsg = this.createText("Ano de publicação:");
         TextField yearControl = new TextField(this.yearControlText);
+        Text ownerMsg = this.createText("Dono:");
+        TextField ownerControl = new TextField(this.ownerControlText);
         Text addressMsg = this.createText("Morada:");
         TextField addressControl = new TextField(this.addressControlText);
         Text roomMsg = this.createText("Divisão:");
@@ -55,11 +58,11 @@ public class BookFormPage extends Page {
         TextField shelfControl = new TextField(this.shelfControlText);
 
 
-        VBox msgs = new VBox(titleMsg, authorMsg, editionMsg, yearMsg, addressMsg, roomMsg, cabinetMsg, shelfMsg);
+        VBox msgs = new VBox(titleMsg, authorMsg, editionMsg, yearMsg, ownerMsg, addressMsg, roomMsg, cabinetMsg, shelfMsg);
         msgs.setAlignment(Pos.CENTER_LEFT);
         msgs.setSpacing(20);
 
-        VBox controls = new VBox(titleControl, authorControl, editionControl, yearControl, addressControl, roomControl, cabinetControl, shelfControl);
+        VBox controls = new VBox(titleControl, authorControl, editionControl, yearControl, ownerControl, addressControl, roomControl, cabinetControl, shelfControl);
         controls.setAlignment(Pos.CENTER_LEFT);
         controls.setSpacing(20);
 

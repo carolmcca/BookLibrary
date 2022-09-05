@@ -30,13 +30,14 @@ public class AddBookAction extends ButtonAction{
         String bookAuthor = ((TextField)inputs.get(1)).getText();
         Integer bookEdition = toInteger(((TextField)inputs.get(2)).getText());
         Integer bookYear = toInteger(((TextField)inputs.get(3)).getText());
-        String address = ((TextField)inputs.get(4)).getText();
-        String room = ((TextField)inputs.get(5)).getText();
-        String cabinet = ((TextField)inputs.get(6)).getText();
-        String shelf = ((TextField)inputs.get(7)).getText();
+        String bookOwner = ((TextField)inputs.get(4)).getText();
+        String address = ((TextField)inputs.get(5)).getText();
+        String room = ((TextField)inputs.get(6)).getText();
+        String cabinet = ((TextField)inputs.get(7)).getText();
+        String shelf = ((TextField)inputs.get(8)).getText();
 
         Place place = new Place(address, room, cabinet, shelf);
-        Book book = new Book(bookTitle, bookAuthor, bookEdition, bookYear, place);
+        Book book = new Book(bookTitle, bookAuthor, bookEdition, bookYear, bookOwner, place);
         this.books.add(book);
     }
 

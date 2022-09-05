@@ -27,6 +27,7 @@ public class EditBookPage extends BookFormPage {
         this.roomControlText = book.getPlace().getRoom();
         this.cabinetControlText = book.getPlace().getCabinet();
         this.shelfControlText = book.getPlace().getShelf();
+        this.ownerControlText = book.getOwner();
     }
 
     @Override

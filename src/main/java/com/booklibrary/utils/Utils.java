@@ -1,13 +1,12 @@
 package com.booklibrary.utils;
 
 
+import com.booklibrary.Application;
 import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.paint.Color;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 
 public class Utils {
 
@@ -61,5 +60,28 @@ public class Utils {
         scrollPane.setFitToHeight(true);
         scrollPane.setFitToWidth(true);
         return scrollPane;
+    }
+
+    // TODO try to fix
+    public static String readFromResource(String filename) throws IOException {
+        InputStreamReader isReader = new InputStreamReader(Utils.class.getResourceAsStream(filename));
+        BufferedReader br = new BufferedReader(isReader);
+        StringBuilder everything = new StringBuilder();
+        String line;
+        while( (line = br.readLine()) != null) {
+            everything.append(line);
+        }
+        return everything.toString();
+    }
+    // TODO try  to fix
+    public static void writeToResource(String filename, String text, boolean overwrite) {
+        PrintWriter writer = null;
+        try {
+            writer = new PrintWriter(Application.class.getResource(filename).getPath());
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        writer.write(text);
+        writer.close();
     }
 }

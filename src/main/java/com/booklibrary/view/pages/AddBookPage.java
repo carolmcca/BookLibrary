@@ -28,6 +28,7 @@ public class AddBookPage extends BookFormPage {
         this.roomControlText = "";
         this.cabinetControlText = "";
         this.shelfControlText = "";
+        this.ownerControlText = "";
     }
 
     @Override

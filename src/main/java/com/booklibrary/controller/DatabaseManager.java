@@ -9,8 +9,7 @@ import java.util.Scanner;
 import java.util.Set;
 import java.util.TreeSet;
 
-import static com.booklibrary.utils.Utils.isNull;
-import static com.booklibrary.utils.Utils.writeToFile;
+import static com.booklibrary.utils.Utils.*;
 
 public class DatabaseManager {
     private static final String filename = "books.txt";
@@ -32,12 +31,13 @@ public class DatabaseManager {
                 String data = myReader.nextLine();
                 String[] attributes = data.split(";", -1);
 
-                Place place = loadPlace(attributes[4]);
+                Place place = loadPlace(attributes[5]);
                 String title = isNull(attributes[0]) ? null : attributes[0];
                 String author = isNull(attributes[1]) ? null : attributes[1];
                 Integer edition = isNull(attributes[2]) ? null : Integer.parseInt(attributes[2]);
                 Integer year = isNull(attributes[3]) ? null : Integer.parseInt(attributes[3]);
-                Book book = new Book(title, author, edition, year, place);
+                String owner = isNull(attributes[4]) ? null : attributes[4];
+                Book book = new Book(title, author, edition, year, owner, place);
 
                 this.books.add(book);
             }
