@@ -41,6 +41,7 @@ public class SearchBookPage extends Page {
         TextField searchControl = new TextField();
         ButtonAction searchBookAction = new SearchBookAction(this.books);
         Button searchButton = searchBookAction.createButton(stage, "Procurar");
+        searchButton.setDefaultButton(true);
 
         HBox hBox = new HBox(searchControl, searchButton);
         hBox.setSpacing(20);
