@@ -2,6 +2,8 @@ package com.booklibrary.view.pages;
 
 import com.booklibrary.controller.actions.*;
 import com.booklibrary.model.Book;
+import javafx.geometry.Insets;
+
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -29,25 +31,28 @@ public class DeleteBookPage extends Page {
 
         Text title = this.createTitle();
 
-        Text text = new Text("Tem a certeza que quer elimninar este livro?");
+        Text text = this.createText("Tem a certeza que quer eliminar este livro?");
+
 
         CompositeAction compositeAction = new CompositeAction();
         compositeAction.add(new DeleteBookAction(this.book, this.books));
         compositeAction.add(new OpenSearchBookPageAction(books));
         Button yesButton = compositeAction.createButton(stage, "Sim");
         Button noButton = new OpenBookDetailsPageAction(book, books).createButton(stage, "Não");
-        HBox hBox = new HBox(yesButton, noButton);
-        hBox.setAlignment(Pos.CENTER);
-        hBox.setSpacing(30);
+
+        HBox buttons = new HBox(yesButton, noButton);
+        buttons.setAlignment(Pos.CENTER);
+        buttons.setSpacing(30);
 
         borderPane.setTop(title);
         borderPane.setCenter(text);
-        borderPane.setBottom(hBox);
+        borderPane.setBottom(buttons);
 
         BorderPane.setAlignment(title, Pos.CENTER);
         BorderPane.setAlignment(text, Pos.CENTER);
-        BorderPane.setAlignment(hBox, Pos.CENTER);
-
+        BorderPane.setAlignment(buttons, Pos.CENTER);
+        BorderPane.setMargin(title, new Insets(50));
+        BorderPane.setMargin(buttons, new Insets(50));
 
         return scene;
     }

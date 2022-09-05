@@ -50,6 +50,8 @@ public class BookAddedPage extends Page {
         BorderPane.setAlignment(pageTitle, Pos.CENTER);
         BorderPane.setAlignment(text, Pos.CENTER);
         BorderPane.setAlignment(buttonBox, Pos.CENTER);
+        BorderPane.setMargin(pageTitle, new Insets(50));
+        BorderPane.setMargin(buttonBox, new Insets(50));
         return scene;
     }
 }

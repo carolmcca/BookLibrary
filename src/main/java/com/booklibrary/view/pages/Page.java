@@ -16,14 +16,14 @@ public abstract class Page {
     protected Text createText(String t){
         Text text = new Text(t);
         text.setFill(Color.SANDYBROWN);
-        text.setFont(Font.font("Arial Narrow", 15));
+        text.setFont(Font.font("Arial Narrow", 20));
         return text;
     }
 
     protected Text createTitle(){
         Text pageTitle = new Text(this.title);
         pageTitle.setFill(Color.SANDYBROWN);
-        pageTitle.setFont(Font.font("Arial Black", 20));
+        pageTitle.setFont(Font.font("Arial Black", 40));
         pageTitle.setTextAlignment(TextAlignment.CENTER);
 
         return pageTitle;

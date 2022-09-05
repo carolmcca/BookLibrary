@@ -47,13 +47,14 @@ public class MainPage extends Page {
 
         VBox vBox = new VBox();
         vBox.getChildren().addAll(this.buttons);
-        vBox.setSpacing(10);
+        vBox.setSpacing(20);
         vBox.setAlignment(Pos.CENTER);
 
         borderPane.setTop(title);
         borderPane.setCenter(vBox);
         BorderPane.setAlignment(title, Pos.CENTER);
         BorderPane.setAlignment(vBox, Pos.CENTER);
+        BorderPane.setMargin(title, new Insets(50));
 
         return scene;
     }

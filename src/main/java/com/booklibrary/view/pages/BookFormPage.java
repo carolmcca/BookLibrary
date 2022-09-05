@@ -4,6 +4,7 @@ import com.booklibrary.controller.actions.AddBookAction;
 import com.booklibrary.controller.actions.CompositeAction;
 import com.booklibrary.controller.actions.OpenBookAddedPageAction;
 import com.booklibrary.model.Book;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -77,6 +78,7 @@ public class BookFormPage extends Page {
 
         BorderPane.setAlignment(pageTitle, Pos.CENTER);
         BorderPane.setAlignment(hBox, Pos.CENTER);
+        BorderPane.setMargin(pageTitle, new Insets(50));
 
         return scene;
     }

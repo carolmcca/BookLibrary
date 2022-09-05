@@ -50,12 +50,15 @@ public class SearchBookPage extends Page {
         TableView<Book> table = this.buildBooksTable(stage, this.books.stream().toList());
 
         VBox vBox = new VBox(hBox, table);
+        vBox.setSpacing(30);
+        vBox.setAlignment(Pos.CENTER);
 
         borderPane.setTop(pageTitle);
         borderPane.setCenter(vBox);
 
         BorderPane.setAlignment(pageTitle, Pos.CENTER);
-        BorderPane.setAlignment(hBox, Pos.CENTER);
+        BorderPane.setAlignment(vBox, Pos.CENTER);
+        BorderPane.setMargin(pageTitle, new Insets(50));
         return scene;
     }
 
