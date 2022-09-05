@@ -41,6 +41,7 @@ public class SearchBookPage extends Page {
         TextField searchControl = new TextField();
         ButtonAction searchBookAction = new SearchBookAction(this.books);
         Button searchButton = searchBookAction.createButton(stage, "Procurar");
+        searchButton.setDefaultButton(true);
 
         HBox hBox = new HBox(searchControl, searchButton);
         hBox.setSpacing(20);
@@ -64,7 +65,12 @@ public class SearchBookPage extends Page {
         titleCol.setCellValueFactory(new PropertyValueFactory<Book, String>("title"));
         TableColumn authorCol = new TableColumn("Author");
         authorCol.setCellValueFactory(new PropertyValueFactory<Book, String>("author"));
+
         table.getColumns().addAll(titleCol, authorCol);
+        table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        table.prefHeightProperty().bind(stage.heightProperty());
+        table.prefWidthProperty().bind(stage.widthProperty());
+
 
         table.setRowFactory(tv -> {
             TableRow<Book> row = new TableRow<>();
