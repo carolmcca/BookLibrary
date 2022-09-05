@@ -1,34 +1,27 @@
 package com.booklibrary;
 
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
+import com.booklibrary.controller.DatabaseManager;
+import com.booklibrary.controller.actions.OpenMainPageAction;
+import com.booklibrary.model.Book;
 import javafx.stage.Stage;
 
-import java.io.IOException;
+import java.util.Set;
 
-public class Application extends javafx.application.Application {
-    private Button button;
+public class Application {
+    private DatabaseManager databaseManager;
 
-    public static void main(String[] args) {
-        launch();
+    public Application() {
+        this.databaseManager = new DatabaseManager();
     }
 
-    @Override
-    public void start(Stage stage) throws Exception {
-
+    public void init(Stage stage) {
+        stage.setMaximized(true);
         stage.setTitle("Biblioteca Pessoal");
-        button = new Button();
-        button.setText("Click me");
 
-        StackPane layout = new StackPane();
-        layout.getChildren().add(button);
-
-        Scene scene = new Scene(layout, 300, 250);
-        stage.setScene(scene);
-        stage.show();
-
+        Set<Book> books = databaseManager.loadBooks();
+        new OpenMainPageAction(books).execute(stage);
     }
-
+    public void end() {
+        databaseManager.saveBooks();
+    }
 }
