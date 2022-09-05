@@ -8,6 +8,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -17,6 +18,8 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.util.Set;
+
+import static com.booklibrary.utils.Utils.setScene;
 
 public class BookFormPage extends Page {
     protected final Set<Book> books;
@@ -37,7 +40,8 @@ public class BookFormPage extends Page {
     @Override
     public Scene create(Stage stage){
         BorderPane borderPane = new BorderPane();
-        Scene scene = new Scene(borderPane, Color.LIGHTGOLDENRODYELLOW);
+        Scene scene = setScene(borderPane);
+
 
         Text pageTitle = this.createTitle();
 
@@ -71,14 +75,14 @@ public class BookFormPage extends Page {
         HBox hBox = new HBox(msgs, controls);
         hBox.setSpacing(10);
         hBox.setAlignment(Pos.CENTER);
-        // hBox.setPadding(new Insets(100));
 
         borderPane.setTop(pageTitle);
         borderPane.setCenter(hBox);
 
         BorderPane.setAlignment(pageTitle, Pos.CENTER);
         BorderPane.setAlignment(hBox, Pos.CENTER);
-        BorderPane.setMargin(pageTitle, new Insets(50));
+
+        BorderPane.setMargin(pageTitle, new Insets(30));
 
         return scene;
     }

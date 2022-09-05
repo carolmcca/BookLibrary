@@ -22,6 +22,8 @@ import javafx.stage.Stage;
 import java.util.List;
 import java.util.Set;
 
+import static com.booklibrary.utils.Utils.setScene;
+
 public class SearchBookPage extends Page {
     private Set<Book> books;
 
@@ -34,7 +36,7 @@ public class SearchBookPage extends Page {
     @Override
     public Scene create(Stage stage){
         BorderPane borderPane = new BorderPane();
-        Scene scene = new Scene(borderPane, Color.LIGHTGOLDENRODYELLOW);
+        Scene scene = setScene(borderPane);
 
         Text pageTitle = this.createTitle();
 

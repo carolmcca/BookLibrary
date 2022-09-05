@@ -36,8 +36,9 @@ public class AddBookPage extends BookFormPage {
         compositeAction.add(new OpenBookAddedPageAction(books));
         Button submitButton = compositeAction.createButton(stage, "Adicionar Livro");
 
-        BorderPane  borderPane = (BorderPane) scene.getRoot();
+        BorderPane borderPane = (BorderPane) scene.getRoot();
         borderPane.setBottom(submitButton);
+
         BorderPane.setAlignment(submitButton, Pos.CENTER);
         BorderPane.setMargin(submitButton, new Insets(50));
 
