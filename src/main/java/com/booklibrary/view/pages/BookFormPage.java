@@ -1,25 +1,19 @@
 package com.booklibrary.view.pages;
 
-import com.booklibrary.controller.actions.AddBookAction;
-import com.booklibrary.controller.actions.CompositeAction;
-import com.booklibrary.controller.actions.OpenBookAddedPageAction;
 import com.booklibrary.model.Book;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.Node;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.util.Set;
 
-import static com.booklibrary.utils.Utils.setScene;
+import static com.booklibrary.utils.Utils.scrollableRoot;
 
 public class BookFormPage extends Page {
     protected final Set<Book> books;
@@ -38,10 +32,8 @@ public class BookFormPage extends Page {
     }
 
     @Override
-    public Scene create(Stage stage){
+    public Node create(Stage stage){
         BorderPane borderPane = new BorderPane();
-        Scene scene = setScene(borderPane);
-
 
         Text pageTitle = this.createTitle();
 
@@ -83,6 +75,6 @@ public class BookFormPage extends Page {
 
         BorderPane.setMargin(pageTitle, new Insets(30));
 
-        return scene;
+        return scrollableRoot(borderPane);
     }
 }

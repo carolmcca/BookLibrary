@@ -1,6 +1,6 @@
 package com.booklibrary.view.pages;
 
-import javafx.scene.Scene;
+import javafx.scene.Node;
 import javafx.stage.Stage;
 
 public class LendBookPage extends Page {
@@ -10,7 +10,7 @@ public class LendBookPage extends Page {
     }
 
     @Override
-    public Scene create(Stage stage) {
+    public Node create(Stage stage) {
         return null;
     }
 }

@@ -6,13 +6,10 @@ import com.booklibrary.controller.actions.OpenSearchBookPageAction;
 import com.booklibrary.model.Book;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Group;
-import javafx.scene.Scene;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -21,7 +18,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
-import static com.booklibrary.utils.Utils.setScene;
+import static com.booklibrary.utils.Utils.scrollableRoot;
 
 public class MainPage extends Page {
     private final List<ButtonAction> actions;
@@ -34,9 +31,8 @@ public class MainPage extends Page {
     }
 
     @Override
-    public Scene create(Stage stage) {
+    public Node create(Stage stage) {
         BorderPane borderPane = new BorderPane();
-        Scene scene = setScene(borderPane);
 
         Text title = this.createTitle();
 
@@ -57,6 +53,6 @@ public class MainPage extends Page {
         BorderPane.setAlignment(vBox, Pos.CENTER);
         BorderPane.setMargin(title, new Insets(50));
 
-        return scene;
+        return scrollableRoot(borderPane);
     }
 }

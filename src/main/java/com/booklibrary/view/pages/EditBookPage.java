@@ -4,7 +4,7 @@ import com.booklibrary.controller.actions.*;
 import com.booklibrary.model.Book;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
@@ -30,8 +30,8 @@ public class EditBookPage extends BookFormPage {
     }
 
     @Override
-    public Scene create(Stage stage) {
-        Scene scene = super.create(stage);
+    public Node create(Stage stage) {
+        Node root = super.create(stage);
 
         CompositeAction compositeAction = new CompositeAction();
         compositeAction.add(new EditBookAction(books, book));
@@ -44,12 +44,12 @@ public class EditBookPage extends BookFormPage {
         buttons.setAlignment(Pos.CENTER);
 
 
-        BorderPane borderPane = (BorderPane) ((ScrollPane)scene.getRoot()).getContent();
+        BorderPane borderPane = (BorderPane) ((ScrollPane)root).getContent();
         borderPane.setBottom(buttons);
 
         BorderPane.setAlignment(buttons, Pos.CENTER);
         BorderPane.setMargin(buttons, new Insets(50));
 
-        return scene;
+        return root;
     }
 }

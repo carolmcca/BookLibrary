@@ -3,20 +3,17 @@ package com.booklibrary.view.pages;
 import com.booklibrary.controller.actions.*;
 import com.booklibrary.model.Book;
 import javafx.geometry.Insets;
-
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.util.Set;
 
-import static com.booklibrary.utils.Utils.setScene;
+import static com.booklibrary.utils.Utils.scrollableRoot;
 
 public class DeleteBookPage extends Page {
     private Book book;
@@ -29,15 +26,12 @@ public class DeleteBookPage extends Page {
     }
 
     @Override
-    public Scene create(Stage stage) {
+    public Node create(Stage stage) {
         BorderPane borderPane = new BorderPane();
-        Scene scene = setScene(borderPane);
-
 
         Text title = this.createTitle();
 
         Text text = this.createText("Tem a certeza que quer eliminar este livro?");
-
 
         CompositeAction compositeAction = new CompositeAction();
         compositeAction.add(new DeleteBookAction(this.book, this.books));
@@ -59,6 +53,6 @@ public class DeleteBookPage extends Page {
         BorderPane.setMargin(title, new Insets(50));
         BorderPane.setMargin(buttons, new Insets(50));
 
-        return scene;
+        return scrollableRoot(borderPane);
     }
 }

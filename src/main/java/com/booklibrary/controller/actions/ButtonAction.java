@@ -1,6 +1,8 @@
 package com.booklibrary.controller.actions;
 
 import com.booklibrary.view.pages.Page;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -10,13 +12,10 @@ public abstract class ButtonAction {
     protected String buttonText;
     protected Page page;
 
-    public void setNextPage(Page page) {
-        this.page = page;
-    }
-
     public void execute(Stage stage) {
         if (this.page == null) return;
-        stage.setScene(this.page.create(stage));
+        Scene scene = stage.getScene();
+        scene.setRoot((Parent)this.page.create(stage));
         stage.show();
     }
 
