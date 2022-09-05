@@ -28,7 +28,7 @@ public class SearchBookAction extends ButtonAction {
     @Override
     public void execute(Stage stage) {
         BorderPane borderPane = (BorderPane) stage.getScene().getRoot();
-        String field = ((TextField) ((HBox) ((VBox) borderPane.getCenter()).getChildren().get(0)).getChildren().get(1)).getText();
+        String field = ((TextField) ((HBox) ((VBox) borderPane.getCenter()).getChildren().get(0)).getChildren().get(0)).getText();
 
         List<Book> searchedBooks = this.searchBooks(field, this.books);
         ObservableList<Book> bookObservableList = FXCollections.observableArrayList(searchedBooks);

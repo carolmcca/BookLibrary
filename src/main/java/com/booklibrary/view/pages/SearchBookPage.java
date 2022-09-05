@@ -38,14 +38,12 @@ public class SearchBookPage extends Page {
 
         Text pageTitle = this.createTitle();
 
-        Text searchMsg = this.createText("Título");
         TextField searchControl = new TextField();
         ButtonAction searchBookAction = new SearchBookAction(this.books);
         Button searchButton = searchBookAction.createButton(stage, "Procurar");
 
-        HBox hBox = new HBox(searchMsg, searchControl, searchButton);
+        HBox hBox = new HBox(searchControl, searchButton);
         hBox.setSpacing(20);
-        hBox.setPadding(new Insets(100));
         hBox.setAlignment(Pos.CENTER);
 
         TableView<Book> table = this.buildBooksTable(stage, this.books.stream().toList());
