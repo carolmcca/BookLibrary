@@ -65,6 +65,7 @@ public class SearchBookPage extends Page {
         TableColumn authorCol = new TableColumn("Author");
         authorCol.setCellValueFactory(new PropertyValueFactory<Book, String>("author"));
         table.getColumns().addAll(titleCol, authorCol);
+        table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
         table.setRowFactory(tv -> {
             TableRow<Book> row = new TableRow<>();
