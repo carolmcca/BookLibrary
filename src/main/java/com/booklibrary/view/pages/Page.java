@@ -1,7 +1,6 @@
 package com.booklibrary.view.pages;
 
-import javafx.geometry.VPos;
-import javafx.scene.Scene;
+import javafx.scene.Node;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -11,7 +10,7 @@ import javafx.stage.Stage;
 public abstract class Page {
     protected String title;
 
-    public abstract Scene create(Stage stage);
+    public abstract Node create(Stage stage);
 
     protected Text createText(String t){
         Text text = new Text(t);

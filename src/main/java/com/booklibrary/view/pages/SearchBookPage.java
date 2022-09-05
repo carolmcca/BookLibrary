@@ -1,6 +1,5 @@
 package com.booklibrary.view.pages;
 
-import com.booklibrary.controller.actions.ButtonAction;
 import com.booklibrary.controller.actions.OpenBookDetailsPageAction;
 import com.booklibrary.controller.actions.OpenMainPageAction;
 import com.booklibrary.controller.actions.SearchBookAction;
@@ -9,21 +8,19 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Group;
-import javafx.scene.Scene;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.util.List;
 import java.util.Set;
 
-import static com.booklibrary.utils.Utils.setScene;
+import static com.booklibrary.utils.Utils.scrollableRoot;
 
 public class SearchBookPage extends Page {
     private Set<Book> books;
@@ -35,9 +32,8 @@ public class SearchBookPage extends Page {
 
 
     @Override
-    public Scene create(Stage stage){
+    public Node create(Stage stage){
         BorderPane borderPane = new BorderPane();
-        Scene scene = setScene(borderPane);
 
         Text pageTitle = this.createTitle();
 
@@ -68,7 +64,8 @@ public class SearchBookPage extends Page {
         BorderPane.setMargin(pageTitle, new Insets(50));
         BorderPane.setMargin(vBox, new Insets(0, 50, 0, 50));
         BorderPane.setMargin(backButton, new Insets(50));
-        return scene;
+
+        return scrollableRoot(borderPane);
     }
 
     private TableView<Book> buildBooksTable(Stage stage, List<Book> books){

@@ -2,7 +2,6 @@ package com.booklibrary.utils;
 
 
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.paint.Color;
 
@@ -47,11 +46,11 @@ public class Utils {
         return false;
     }
 
-    public static Scene setScene(Node root) {
+    public static Node scrollableRoot(Node root) {
         ScrollPane scrollPane = new ScrollPane();
         scrollPane.setContent(root);
         scrollPane.setFitToHeight(true);
         scrollPane.setFitToWidth(true);
-        return new Scene(scrollPane, Color.LIGHTGOLDENRODYELLOW);
+        return scrollPane;
     }
 }
