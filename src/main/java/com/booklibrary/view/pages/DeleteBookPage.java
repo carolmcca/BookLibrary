@@ -3,6 +3,7 @@ package com.booklibrary.view.pages;
 import com.booklibrary.controller.actions.*;
 import com.booklibrary.model.Book;
 import javafx.geometry.Insets;
+
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -30,13 +31,15 @@ public class DeleteBookPage extends Page {
 
         Text title = this.createTitle();
 
-        Text text = this.createText("Tem a certeza que quer elimninar este livro?");
+        Text text = this.createText("Tem a certeza que quer eliminar este livro?");
+
 
         CompositeAction compositeAction = new CompositeAction();
         compositeAction.add(new DeleteBookAction(this.book, this.books));
         compositeAction.add(new OpenSearchBookPageAction(books));
         Button yesButton = compositeAction.createButton(stage, "Sim");
         Button noButton = new OpenBookDetailsPageAction(book, books).createButton(stage, "Não");
+
         HBox buttons = new HBox(yesButton, noButton);
         buttons.setAlignment(Pos.CENTER);
         buttons.setSpacing(30);
@@ -50,7 +53,6 @@ public class DeleteBookPage extends Page {
         BorderPane.setAlignment(buttons, Pos.CENTER);
         BorderPane.setMargin(title, new Insets(50));
         BorderPane.setMargin(buttons, new Insets(50));
-
 
         return scene;
     }

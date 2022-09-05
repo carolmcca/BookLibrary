@@ -8,7 +8,7 @@ import java.util.Set;
 public class DeleteBookAction extends ButtonAction {
     private final Book book;
     private final Set<Book> books;
-
+    
     public DeleteBookAction(Book book, Set<Book> books) {
         this.book = book;
         this.books = books;

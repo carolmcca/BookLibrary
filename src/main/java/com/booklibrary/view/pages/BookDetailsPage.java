@@ -44,6 +44,7 @@ public class BookDetailsPage extends Page {
         Button deleteButton = new OpenDeleteBookPageAction(books, this.book).createButton(stage);
 
         HBox buttons = new HBox(mainMenuButton, editButton, deleteButton);
+
         buttons.setSpacing(30);
         buttons.setAlignment(Pos.CENTER);
 
