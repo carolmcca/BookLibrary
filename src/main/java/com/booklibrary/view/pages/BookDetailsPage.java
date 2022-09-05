@@ -1,9 +1,11 @@
 package com.booklibrary.view.pages;
 
+import com.booklibrary.controller.actions.OpenDeleteBookPageAction;
 import com.booklibrary.controller.actions.OpenEditBookPageAction;
 import com.booklibrary.controller.actions.OpenMainPageAction;
 import com.booklibrary.model.Book;
 import com.booklibrary.model.Place;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -39,8 +41,9 @@ public class BookDetailsPage extends Page {
 
         Button mainMenuButton = new OpenMainPageAction(this.books).createButton(stage);
         Button editButton = new OpenEditBookPageAction(books, this.book).createButton(stage);
+        Button deleteButton = new OpenDeleteBookPageAction(books, this.book).createButton(stage);
 
-        HBox buttons = new HBox(editButton, mainMenuButton);
+        HBox buttons = new HBox(mainMenuButton, editButton, deleteButton);
         buttons.setSpacing(30);
         buttons.setAlignment(Pos.CENTER);
 
@@ -51,6 +54,9 @@ public class BookDetailsPage extends Page {
         BorderPane.setAlignment(pageTitle, Pos.CENTER);
         BorderPane.setAlignment(infoHBox, Pos.CENTER);
         BorderPane.setAlignment(buttons, Pos.CENTER);
+
+        BorderPane.setMargin(pageTitle, new Insets(50));
+        BorderPane.setMargin(buttons, new Insets(50));
 
         return scene;
     }

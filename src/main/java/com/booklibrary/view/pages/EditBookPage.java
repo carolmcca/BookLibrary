@@ -2,6 +2,7 @@ package com.booklibrary.view.pages;
 
 import com.booklibrary.controller.actions.*;
 import com.booklibrary.model.Book;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -38,6 +39,7 @@ public class EditBookPage extends BookFormPage {
         BorderPane borderPane = (BorderPane) scene.getRoot();
         borderPane.setBottom(submitButton);
         BorderPane.setAlignment(submitButton, Pos.CENTER);
+        BorderPane.setMargin(submitButton, new Insets(50));
 
         return scene;
     }

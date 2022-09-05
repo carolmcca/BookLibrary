@@ -28,7 +28,7 @@ public abstract class ButtonAction {
         Button button = new Button(text);
         button.setTextFill(Color.LIGHTGOLDENRODYELLOW);
         button.setStyle("-fx-background-color: SandyBrown");
-        button.setFont(Font.font("Arial Narrow", 15));
+        button.setFont(Font.font("Arial Narrow", 20));
 
         button.setOnAction(e -> this.execute(stage));
         return button;
