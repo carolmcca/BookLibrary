@@ -1,5 +1,7 @@
 package com.booklibrary.view.pages;
 
+import com.booklibrary.controller.actions.OpenBookDetailsPageAction;
+import com.booklibrary.controller.actions.OpenDeleteBookPageAction;
 import com.booklibrary.controller.actions.OpenEditBookPageAction;
 import com.booklibrary.controller.actions.OpenMainPageAction;
 import com.booklibrary.model.Book;
@@ -39,8 +41,9 @@ public class BookDetailsPage extends Page {
 
         Button mainMenuButton = new OpenMainPageAction(this.books).createButton(stage);
         Button editButton = new OpenEditBookPageAction(books, this.book).createButton(stage);
+        Button deleteButton = new OpenDeleteBookPageAction(this.book, this.books).createButton(stage);
 
-        HBox buttons = new HBox(editButton, mainMenuButton);
+        HBox buttons = new HBox(deleteButton, editButton, mainMenuButton);
         buttons.setSpacing(30);
         buttons.setAlignment(Pos.CENTER);
 
