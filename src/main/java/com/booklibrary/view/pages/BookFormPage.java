@@ -61,8 +61,6 @@ public class BookFormPage extends Page {
         TextField cabinetControl = new TextField(this.cabinetControlText);
         Text shelfMsg = this.createText("Prateleira:");
         TextField shelfControl = new TextField(this.shelfControlText);
-        shelfControl.setPrefHeight(30);
-
 
 
         VBox msgs = new VBox(titleMsg, authorMsg, editionMsg, yearMsg, addressMsg, roomMsg, cabinetMsg, shelfMsg);
@@ -74,7 +72,7 @@ public class BookFormPage extends Page {
         controls.setSpacing(20);
 
         HBox hBox = new HBox(msgs, controls);
-        hBox.setSpacing(10);
+        hBox.setSpacing(30);
         hBox.setAlignment(Pos.CENTER);
 
         borderPane.setTop(pageTitle);

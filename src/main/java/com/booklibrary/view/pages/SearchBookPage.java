@@ -66,6 +66,7 @@ public class SearchBookPage extends Page {
         BorderPane.setAlignment(backButton, Pos.CENTER);
 
         BorderPane.setMargin(pageTitle, new Insets(50));
+        BorderPane.setMargin(vBox, new Insets(0, 50, 0, 50));
         BorderPane.setMargin(backButton, new Insets(50));
         return scene;
     }

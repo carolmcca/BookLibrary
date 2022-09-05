@@ -3,6 +3,7 @@ package com.booklibrary.view.pages;
 import com.booklibrary.controller.actions.OpenDeleteBookPageAction;
 import com.booklibrary.controller.actions.OpenEditBookPageAction;
 import com.booklibrary.controller.actions.OpenMainPageAction;
+import com.booklibrary.controller.actions.OpenSearchBookPageAction;
 import com.booklibrary.model.Book;
 import com.booklibrary.model.Place;
 import javafx.geometry.Insets;
@@ -43,11 +44,11 @@ public class BookDetailsPage extends Page {
         infoHBox.setAlignment(Pos.CENTER);
         infoHBox.setSpacing(40);
 
-        Button mainMenuButton = new OpenMainPageAction(this.books).createButton(stage);
+        Button backButton = new OpenSearchBookPageAction(this.books).createButton(stage, "Voltar");
         Button editButton = new OpenEditBookPageAction(books, this.book).createButton(stage);
         Button deleteButton = new OpenDeleteBookPageAction(books, this.book).createButton(stage);
 
-        HBox buttons = new HBox(mainMenuButton, editButton, deleteButton);
+        HBox buttons = new HBox(backButton, editButton, deleteButton);
 
         buttons.setSpacing(30);
         buttons.setAlignment(Pos.CENTER);
@@ -71,7 +72,7 @@ public class BookDetailsPage extends Page {
                 this.createText("Título:"),
                 this.createText("Autor(es):"),
                 this.createText("Edição:"),
-                this.createText("Ano:"),
+                this.createText("Ano de publicação:"),
                 this.createText("Morada:"),
                 this.createText("Divisão:"),
                 this.createText("Armário:"),
