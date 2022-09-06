@@ -1,8 +1,6 @@
 package com.booklibrary.view.pages;
 
-import com.booklibrary.controller.actions.OpenDeleteBookPageAction;
-import com.booklibrary.controller.actions.OpenEditBookPageAction;
-import com.booklibrary.controller.actions.OpenSearchBookPageAction;
+import com.booklibrary.controller.actions.*;
 import com.booklibrary.model.Book;
 import com.booklibrary.model.Database;
 import com.booklibrary.model.Place;
@@ -41,8 +39,10 @@ public class BookDetailsPage extends Page {
         Button backButton = new OpenSearchBookPageAction(this.database).createButton(stage, "Voltar");
         Button editButton = new OpenEditBookPageAction(this.database, this.book).createButton(stage);
         Button deleteButton = new OpenDeleteBookPageAction(this.database, this.book).createButton(stage);
+        Button lendButton = new OpenLendBookPageAction(this.database, this.book).createButton(stage);
+        Button returnButton = new OpenReturnBookPageAction(this.database, this.book).createButton(stage);
 
-        HBox buttons = new HBox(backButton, editButton, deleteButton);
+        HBox buttons = new HBox(backButton, editButton, deleteButton, lendButton, returnButton);
 
         buttons.setSpacing(30);
         buttons.setAlignment(Pos.CENTER);
@@ -71,7 +71,8 @@ public class BookDetailsPage extends Page {
                 this.createText("Morada:"),
                 this.createText("Divisão:"),
                 this.createText("Armário:"),
-                this.createText("Prateleira:")
+                this.createText("Prateleira:"),
+                this.createText("Emprestado a:")
         );
         vBox.setSpacing(15);
         return vBox;
@@ -88,7 +89,8 @@ public class BookDetailsPage extends Page {
                 this.createText(place.getAddress()),
                 this.createText(place.getRoom()),
                 this.createText(place.getCabinet()),
-                this.createText(place.getShelf())
+                this.createText(place.getShelf()),
+                this.createText(book.getLend() == null ? "Ninguém" : book.getLend())
         );
         vBox.setSpacing(15);
         return vBox;
