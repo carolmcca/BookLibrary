@@ -39,8 +39,8 @@ public class BookDetailsPage extends Page {
         Button backButton = new OpenSearchBookPageAction(this.database).createButton(stage, "Voltar");
         Button editButton = new OpenEditBookPageAction(this.database, this.book).createButton(stage);
         Button deleteButton = new OpenDeleteBookPageAction(this.database, this.book).createButton(stage);
-        Button lendButton = new OpenLendBookPageAction(this.book, this.database).createButton(stage);
-        Button returnButton = new OpenReturnBookPageAction(this.book, this.database).createButton(stage);
+        Button lendButton = new OpenLendBookPageAction(this.database, this.book).createButton(stage);
+        Button returnButton = new OpenReturnBookPageAction(this.database, this.book).createButton(stage);
 
         HBox buttons = new HBox(backButton, editButton, deleteButton, lendButton, returnButton);
 
