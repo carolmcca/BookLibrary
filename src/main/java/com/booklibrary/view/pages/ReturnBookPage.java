@@ -18,9 +18,9 @@ import static com.booklibrary.utils.Utils.scrollableRoot;
 public class ReturnBookPage extends Page {
     private Book book;
     private Database database;
-    public ReturnBookPage(Book book, Database database) {
-        this.book = book;
+    public ReturnBookPage(Database database, Book book) {
         this.database = database;
+        this.book = book;
     }
 
     @Override
