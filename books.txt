@@ -1,6 +1,0 @@
-Feel weak;Eminem;null;null;|||
-Give up;Eminem;null;null;|||
-Mais outro;Carike;null;null;Rua de Bustes|||
-Outro;Carol;null;null;Rua de Bustes|||
-Sonasol;Rikol;null;null;Rua de Bustes|||
-Tit;Henrique;null;null;Rua de Bustes|||

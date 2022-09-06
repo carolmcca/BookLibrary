@@ -3,7 +3,8 @@ package com.booklibrary.view.pages;
 import com.booklibrary.controller.actions.ButtonAction;
 import com.booklibrary.controller.actions.OpenAddBookPageAction;
 import com.booklibrary.controller.actions.OpenSearchBookPageAction;
-import com.booklibrary.model.Book;
+import com.booklibrary.controller.actions.OpenSettingsPageAction;
+import com.booklibrary.model.Database;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -16,7 +17,6 @@ import javafx.stage.Stage;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
 
 import static com.booklibrary.utils.Utils.scrollableRoot;
 
@@ -24,9 +24,12 @@ public class MainPage extends Page {
     private final List<ButtonAction> actions;
     private final List<Button> buttons;
 
-    public MainPage(Set<Book> books){
+    public MainPage(Database database){
         this.title = "Bem-vindo à sua biblioteca pessoal";
-        this.actions = Arrays.asList(new OpenAddBookPageAction(books), new OpenSearchBookPageAction(books));
+        this.actions = Arrays.asList(
+                new OpenAddBookPageAction(database),
+                new OpenSearchBookPageAction(database),
+                new OpenSettingsPageAction(database));
         this.buttons = new ArrayList<>();
     }
 

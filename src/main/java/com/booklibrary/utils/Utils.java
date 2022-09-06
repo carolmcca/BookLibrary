@@ -1,18 +1,16 @@
 package com.booklibrary.utils;
 
 
+import com.booklibrary.Application;
 import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.paint.Color;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 
 public class Utils {
 
     public static boolean isNull(String s) {
-        return s.equals("null");
+        return s.isEmpty();
     }
 
     public static void writeToFile(String filename, String text, boolean overwrite) {
@@ -24,12 +22,21 @@ public class Utils {
             e.printStackTrace();
         }
         try {
-            FileWriter myWriter = new FileWriter(filename, overwrite);
+            FileWriter myWriter = new FileWriter(filename, !overwrite);
             myWriter.write(text);
             myWriter.close();
         } catch (IOException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
+        }
+    }
+
+    public static Integer toInteger(String s) {
+        try {
+            if (s.isBlank()) return null;
+            else return Integer.parseInt(s);
+        } catch (Exception e) {
+            return null;
         }
     }
 
@@ -52,5 +59,28 @@ public class Utils {
         scrollPane.setFitToHeight(true);
         scrollPane.setFitToWidth(true);
         return scrollPane;
+    }
+
+    // TODO try to fix
+    public static String readFromResource(String filename) throws IOException {
+        InputStreamReader isReader = new InputStreamReader(Utils.class.getResourceAsStream(filename));
+        BufferedReader br = new BufferedReader(isReader);
+        StringBuilder everything = new StringBuilder();
+        String line;
+        while( (line = br.readLine()) != null) {
+            everything.append(line);
+        }
+        return everything.toString();
+    }
+    // TODO try  to fix
+    public static void writeToResource(String filename, String text, boolean overwrite) {
+        PrintWriter writer = null;
+        try {
+            writer = new PrintWriter(Application.class.getResource(filename).getPath());
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        writer.write(text);
+        writer.close();
     }
 }

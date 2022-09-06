@@ -11,8 +11,10 @@ import javafx.stage.Stage;
 
 import java.util.Set;
 
+import static com.booklibrary.utils.Utils.toInteger;
+
 public class AddBookAction extends ButtonAction{
-    private Set<Book> books;
+    private final Set<Book> books;
 
     public AddBookAction(Set<Book> books) {
         this.buttonText = "Adicionar Livro";
@@ -24,20 +26,18 @@ public class AddBookAction extends ButtonAction{
         VBox vBox = (VBox) hBox.getChildren().get(1);
         var inputs = vBox.getChildren();
 
-        String aux;
         String bookTitle = ((TextField)inputs.get(0)).getText();
         String bookAuthor = ((TextField)inputs.get(1)).getText();
-        aux = ((TextField)inputs.get(2)).getText();
-        Integer bookEdition = aux.isBlank() ? null : Integer.parseInt(aux);
-        aux = ((TextField)inputs.get(3)).getText();
-        Integer bookYear = aux.isBlank() ? null : Integer.parseInt(aux);
-        String address = ((TextField)inputs.get(4)).getText();
-        String room = ((TextField)inputs.get(5)).getText();
-        String cabinet = ((TextField)inputs.get(6)).getText();
-        String shelf = ((TextField)inputs.get(7)).getText();
+        Integer bookEdition = toInteger(((TextField)inputs.get(2)).getText());
+        Integer bookYear = toInteger(((TextField)inputs.get(3)).getText());
+        String bookOwner = ((TextField)inputs.get(4)).getText();
+        String address = ((TextField)inputs.get(5)).getText();
+        String room = ((TextField)inputs.get(6)).getText();
+        String cabinet = ((TextField)inputs.get(7)).getText();
+        String shelf = ((TextField)inputs.get(8)).getText();
 
         Place place = new Place(address, room, cabinet, shelf);
-        Book book = new Book(bookTitle, bookAuthor, bookEdition, bookYear, place);
+        Book book = new Book(bookTitle, bookAuthor, bookEdition, bookYear, bookOwner, place);
         this.books.add(book);
     }
 

@@ -1,13 +1,11 @@
 package com.booklibrary.controller.actions;
 
-import com.booklibrary.model.Book;
+import com.booklibrary.model.Database;
 import com.booklibrary.view.pages.SearchBookPage;
 
-import java.util.Set;
-
-public class OpenSearchBookPageAction extends ButtonAction{
-    public OpenSearchBookPageAction(Set<Book> books) {
+public class OpenSearchBookPageAction extends ButtonAction {
+    public OpenSearchBookPageAction(Database database) {
         this.buttonText = "Procurar Livro";
-        this.page = new SearchBookPage(books);
+        this.page = new SearchBookPage(database);
     }
 }

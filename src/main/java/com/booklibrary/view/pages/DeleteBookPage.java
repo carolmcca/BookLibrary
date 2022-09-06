@@ -2,6 +2,7 @@ package com.booklibrary.view.pages;
 
 import com.booklibrary.controller.actions.*;
 import com.booklibrary.model.Book;
+import com.booklibrary.model.Database;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -11,17 +12,15 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.util.Set;
-
 import static com.booklibrary.utils.Utils.scrollableRoot;
 
 public class DeleteBookPage extends Page {
-    private Book book;
-    private Set<Book> books;
+    private final Database database;
+    private final Book book;
 
-    public DeleteBookPage(Book book, Set<Book> books){
+    public DeleteBookPage(Database database, Book book){
+        this.database = database;
         this.book = book;
-        this.books = books;
         this.title = "Eliminar livro";
     }
 
@@ -34,10 +33,10 @@ public class DeleteBookPage extends Page {
         Text text = this.createText("Tem a certeza que quer eliminar este livro?");
 
         CompositeAction compositeAction = new CompositeAction();
-        compositeAction.add(new DeleteBookAction(this.book, this.books));
-        compositeAction.add(new OpenSearchBookPageAction(books));
+        compositeAction.add(new DeleteBookAction(this.database.getBooks(), this.book));
+        compositeAction.add(new OpenSearchBookPageAction(this.database));
         Button yesButton = compositeAction.createButton(stage, "Sim");
-        Button noButton = new OpenBookDetailsPageAction(book, books).createButton(stage, "Não");
+        Button noButton = new OpenBookDetailsPageAction(this.database, this.book).createButton(stage, "Não");
 
         HBox buttons = new HBox(yesButton, noButton);
         buttons.setAlignment(Pos.CENTER);
