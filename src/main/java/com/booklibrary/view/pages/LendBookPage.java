@@ -20,7 +20,7 @@ import static com.booklibrary.utils.Utils.scrollableRoot;
 public class LendBookPage extends Page {
     private Book book;
     private Database database;
-    public LendBookPage(Book book, Database database) {
+    public LendBookPage(Database database, Book book) {
         this.database = database;
         this.title = "Emprestar livro";
         this.book = book;
