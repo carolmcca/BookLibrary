@@ -60,6 +60,7 @@ public class SettingsPage extends Page {
         borderPane.setCenter(hBox);
         borderPane.setBottom(buttons);
 
+        BorderPane.setAlignment(pageTitle, Pos.CENTER);
         BorderPane.setMargin(pageTitle, new Insets(50));
         BorderPane.setMargin(buttons, new Insets(50));
 
