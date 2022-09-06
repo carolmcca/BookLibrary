@@ -8,6 +8,7 @@ public class Book implements Comparable<Book>{
     private Integer year;
     private String owner;
     private Place place;
+    private String lend;
 
     public Book(String title, String author, Integer edition, Integer year, String owner, Place place) {
         this.title = title;
@@ -16,6 +17,7 @@ public class Book implements Comparable<Book>{
         this.year = year;
         this.owner = owner;
         this.place = place;
+        this.lend = null;
     }
 
     public void setTitle(String title) {
@@ -36,6 +38,7 @@ public class Book implements Comparable<Book>{
     public void setPlace(Place place) {
         this.place = place;
     }
+    public void setLend(String lend) { this.lend = lend; }
 
     public String getTitle() {
         return title;
@@ -55,6 +58,7 @@ public class Book implements Comparable<Book>{
     public Place getPlace() {
         return place;
     }
+    public String getLend() { return lend; }
 
     @Override
     public String toString() {
@@ -63,7 +67,8 @@ public class Book implements Comparable<Book>{
                 + (this.edition == null ? "" : this.edition) + ";"
                 + (this.year == null ? "" : this.year) + ";"
                 + (this.owner == null ? "" : this.owner) + ";"
-                + this.place;
+                + this.place + ";"
+                + (this.lend == null ? "" : this.lend);
     }
 
     @Override
