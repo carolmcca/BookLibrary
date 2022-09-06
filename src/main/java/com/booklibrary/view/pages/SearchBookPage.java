@@ -4,7 +4,7 @@ import com.booklibrary.controller.actions.OpenBookDetailsPageAction;
 import com.booklibrary.controller.actions.OpenMainPageAction;
 import com.booklibrary.controller.actions.SearchBookAction;
 import com.booklibrary.model.Book;
-import com.booklibrary.model.Config;
+import com.booklibrary.model.Database;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -19,20 +19,16 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.util.List;
-import java.util.Set;
 
 import static com.booklibrary.utils.Utils.scrollableRoot;
 
 public class SearchBookPage extends Page {
-    private final Set<Book> books;
-    private final Config config;
+    private final Database database;
 
-    public SearchBookPage(Config config, Set<Book> books) {
+    public SearchBookPage(Database database) {
+        this.database = database;
         this.title = "Procurar Livro";
-        this.config = config;
-        this.books = books;
     }
-
 
     @Override
     public Node create(Stage stage){
@@ -41,20 +37,20 @@ public class SearchBookPage extends Page {
         Text pageTitle = this.createTitle();
 
         TextField searchControl = new TextField();
-        Button searchButton = new SearchBookAction(this.books).createButton(stage, "Procurar");
+        Button searchButton = new SearchBookAction(this.database.getBooks()).createButton(stage, "Procurar");
         searchButton.setDefaultButton(true);
 
         HBox hBox = new HBox(searchControl, searchButton);
         hBox.setSpacing(20);
         hBox.setAlignment(Pos.CENTER);
 
-        TableView<Book> table = this.buildBooksTable(stage, this.books.stream().toList());
+        TableView<Book> table = this.buildBooksTable(stage, this.database.getBooks().stream().toList());
 
         VBox vBox = new VBox(hBox, table);
         vBox.setSpacing(30);
         vBox.setAlignment(Pos.CENTER);
 
-        Button backButton = new OpenMainPageAction(this.config, this.books).createButton(stage, "Voltar");
+        Button backButton = new OpenMainPageAction(this.database).createButton(stage, "Voltar");
 
         borderPane.setTop(pageTitle);
         borderPane.setCenter(vBox);
@@ -89,7 +85,7 @@ public class SearchBookPage extends Page {
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
                     Book book = row.getItem();
-                    new OpenBookDetailsPageAction(book, config, this.books).execute(stage);
+                    new OpenBookDetailsPageAction(this.database, book).execute(stage);
                 }
             });
             return row ;

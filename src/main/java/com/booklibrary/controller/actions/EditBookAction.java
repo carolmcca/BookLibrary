@@ -18,7 +18,6 @@ public class EditBookAction extends ButtonAction {
     private final Book book;
 
     public EditBookAction(Set<Book> books, Book book) {
-        super();
         this.books = books;
         this.book = book;
     }

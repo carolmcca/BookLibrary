@@ -4,7 +4,7 @@ import com.booklibrary.controller.actions.OpenDeleteBookPageAction;
 import com.booklibrary.controller.actions.OpenEditBookPageAction;
 import com.booklibrary.controller.actions.OpenSearchBookPageAction;
 import com.booklibrary.model.Book;
-import com.booklibrary.model.Config;
+import com.booklibrary.model.Database;
 import com.booklibrary.model.Place;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -16,21 +16,16 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.util.Set;
-
 import static com.booklibrary.utils.Utils.scrollableRoot;
 
 public class BookDetailsPage extends Page {
+    private final Database database;
     private final Book book;
-    private final Set<Book> books;
-    private final Config config;
 
-
-    public BookDetailsPage(Book book, Config config, Set<Book> books) {
-        this.title = book.getTitle();
-        this.config = config;
+    public BookDetailsPage(Database database, Book book) {
+        this.database = database;
         this.book = book;
-        this.books = books;
+        this.title = book.getTitle();
     }
 
     @Override
@@ -43,9 +38,9 @@ public class BookDetailsPage extends Page {
         infoHBox.setAlignment(Pos.CENTER);
         infoHBox.setSpacing(40);
 
-        Button backButton = new OpenSearchBookPageAction(this.config, this.books).createButton(stage, "Voltar");
-        Button editButton = new OpenEditBookPageAction(config, books, this.book).createButton(stage);
-        Button deleteButton = new OpenDeleteBookPageAction(config, books, this.book).createButton(stage);
+        Button backButton = new OpenSearchBookPageAction(this.database).createButton(stage, "Voltar");
+        Button editButton = new OpenEditBookPageAction(this.database, this.book).createButton(stage);
+        Button deleteButton = new OpenDeleteBookPageAction(this.database, this.book).createButton(stage);
 
         HBox buttons = new HBox(backButton, editButton, deleteButton);
 

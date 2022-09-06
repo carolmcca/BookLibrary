@@ -10,7 +10,6 @@ import static com.booklibrary.utils.Utils.isNull;
 import static com.booklibrary.utils.Utils.writeToFile;
 
 public class Config {
-    private static final String filename = "library_config.txt";
     private String libraryOwner;
     private String libraryAddress;
 
@@ -33,34 +32,5 @@ public class Config {
     }
     public void setLibraryAddress(String libraryAddress) {
         this.libraryAddress = libraryAddress;
-    }
-
-    public void loadConfigs() {
-        try {
-            File file = new File(Config.filename);
-            Scanner myReader = new Scanner(file);
-            while (myReader.hasNextLine()) {
-                String data = myReader.nextLine();
-                String[] attributes = data.split("\\|", -1);
-
-                String key = attributes[0];
-                String value = attributes[1];
-                if (key.equals("Library Owner")) {
-                    this.libraryOwner = value;
-                }
-                else if (key.equals("Library Address")) {
-                    this.libraryAddress = value;
-                }
-            }
-            myReader.close();
-        } catch (FileNotFoundException e) {}
-    }
-
-    public void saveConfigs() {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("Library Owner").append("|").append(this.libraryOwner).append("\n");
-        stringBuilder.append("Library Address").append("|").append(this.libraryAddress).append("\n");
-
-        writeToFile(Config.filename, stringBuilder.toString(), true);
     }
 }

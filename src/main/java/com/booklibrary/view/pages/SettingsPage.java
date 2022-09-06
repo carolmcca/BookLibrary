@@ -1,8 +1,7 @@
 package com.booklibrary.view.pages;
 
 import com.booklibrary.controller.actions.*;
-import com.booklibrary.model.Book;
-import com.booklibrary.model.Config;
+import com.booklibrary.model.Database;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -14,17 +13,13 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.util.Set;
-
 import static com.booklibrary.utils.Utils.scrollableRoot;
 
 public class SettingsPage extends Page {
-    private final Config config;
-    private final Set<Book> books;
+    private final Database database;
 
-    public SettingsPage(Config config, Set<Book> books) {
-        this.config = config;
-        this.books = books;
+    public SettingsPage(Database database) {
+        this.database = database;
         this.title = "Configurações pré-definidas";
     }
 
@@ -35,9 +30,9 @@ public class SettingsPage extends Page {
         Text pageTitle = this.createTitle();
 
         Text ownerMsg = this.createText("Dono da Biblioteca:");
-        TextField ownerControl = new TextField(this.config.getLibraryOwner());
+        TextField ownerControl = new TextField(this.database.getConfig().getLibraryOwner());
         Text addressMsg = this.createText("Morada da Biblioteca");
-        TextField addressControl = new TextField(this.config.getLibraryAddress());
+        TextField addressControl = new TextField(this.database.getConfig().getLibraryAddress());
 
         VBox msgs = new VBox(ownerMsg, addressMsg);
         msgs.setAlignment(Pos.CENTER_LEFT);
@@ -52,10 +47,10 @@ public class SettingsPage extends Page {
         hBox.setAlignment(Pos.CENTER);
 
         CompositeAction compositeAction = new CompositeAction();
-        compositeAction.add(new SaveConfigAction(this.config));
-        compositeAction.add(new OpenMainPageAction(config, this.books));
+        compositeAction.add(new SaveConfigAction(this.database.getConfig()));
+        compositeAction.add(new OpenMainPageAction(this.database));
         Button saveButton = compositeAction.createButton(stage, "Guardar");
-        Button backButton = new OpenMainPageAction(config, this.books).createButton(stage, "Voltar");
+        Button backButton = new OpenMainPageAction(this.database).createButton(stage, "Voltar");
 
         HBox buttons = new HBox(backButton, saveButton);
         buttons.setSpacing(30);

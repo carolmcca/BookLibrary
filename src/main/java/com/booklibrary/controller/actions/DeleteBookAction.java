@@ -6,12 +6,12 @@ import javafx.stage.Stage;
 import java.util.Set;
 
 public class DeleteBookAction extends ButtonAction {
-    private final Book book;
     private final Set<Book> books;
-    
-    public DeleteBookAction(Book book, Set<Book> books) {
-        this.book = book;
+    private final Book book;
+
+    public DeleteBookAction(Set<Book> books, Book book) {
         this.books = books;
+        this.book = book;
     }
 
     @Override

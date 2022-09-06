@@ -1,5 +1,6 @@
 package com.booklibrary.controller.actions;
 
+import com.booklibrary.controller.DatabaseManager;
 import com.booklibrary.model.Config;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
@@ -27,6 +28,7 @@ public class SaveConfigAction extends ButtonAction {
         this.config.setLibraryOwner(libraryOwner);
         this.config.setLibraryAddress(libraryAddress);
 
-        this.config.saveConfigs();
+        DatabaseManager databaseManager = new DatabaseManager(this.config);
+        databaseManager.saveConfig();
     }
 }

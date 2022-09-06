@@ -4,7 +4,6 @@ package com.booklibrary.utils;
 import com.booklibrary.Application;
 import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.paint.Color;
 
 import java.io.*;
 
