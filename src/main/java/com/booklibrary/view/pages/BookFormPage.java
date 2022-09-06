@@ -28,7 +28,6 @@ public class BookFormPage extends Page {
     protected String ownerControlText;
 
     public BookFormPage(Set<Book> books) {
-        this.title = "Adicionar Livro";
         this.books = books;
     }
 

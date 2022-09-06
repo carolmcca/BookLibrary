@@ -12,7 +12,7 @@ import java.util.TreeSet;
 import static com.booklibrary.utils.Utils.*;
 
 public class DatabaseManager {
-    private static final String filename = "books.txt";
+    private static final String filename = "library_books.txt";
     private final Set<Book> books;
 
     public DatabaseManager() {
@@ -55,6 +55,6 @@ public class DatabaseManager {
         for (Book book : books) {
             stringBuilder.append(book.toString()).append("\n");
         }
-        writeToFile(DatabaseManager.filename, stringBuilder.toString(), false);
+        writeToFile(DatabaseManager.filename, stringBuilder.toString(), true);
     }
 }

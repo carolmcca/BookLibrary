@@ -23,7 +23,7 @@ public class Utils {
             e.printStackTrace();
         }
         try {
-            FileWriter myWriter = new FileWriter(filename, overwrite);
+            FileWriter myWriter = new FileWriter(filename, !overwrite);
             myWriter.write(text);
             myWriter.close();
         } catch (IOException e) {

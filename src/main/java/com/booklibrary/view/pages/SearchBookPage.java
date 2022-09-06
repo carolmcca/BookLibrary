@@ -4,6 +4,7 @@ import com.booklibrary.controller.actions.OpenBookDetailsPageAction;
 import com.booklibrary.controller.actions.OpenMainPageAction;
 import com.booklibrary.controller.actions.SearchBookAction;
 import com.booklibrary.model.Book;
+import com.booklibrary.model.Config;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -23,10 +24,12 @@ import java.util.Set;
 import static com.booklibrary.utils.Utils.scrollableRoot;
 
 public class SearchBookPage extends Page {
-    private Set<Book> books;
+    private final Set<Book> books;
+    private final Config config;
 
-    public SearchBookPage(Set<Book> books) {
+    public SearchBookPage(Config config, Set<Book> books) {
         this.title = "Procurar Livro";
+        this.config = config;
         this.books = books;
     }
 
@@ -51,7 +54,7 @@ public class SearchBookPage extends Page {
         vBox.setSpacing(30);
         vBox.setAlignment(Pos.CENTER);
 
-        Button backButton = new OpenMainPageAction(this.books).createButton(stage, "Voltar");
+        Button backButton = new OpenMainPageAction(this.config, this.books).createButton(stage, "Voltar");
 
         borderPane.setTop(pageTitle);
         borderPane.setCenter(vBox);
@@ -86,7 +89,7 @@ public class SearchBookPage extends Page {
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
                     Book book = row.getItem();
-                    new OpenBookDetailsPageAction(book, this.books).execute(stage);
+                    new OpenBookDetailsPageAction(book, config, this.books).execute(stage);
                 }
             });
             return row ;

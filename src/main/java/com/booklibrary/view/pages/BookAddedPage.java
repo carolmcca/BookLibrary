@@ -4,6 +4,7 @@ import com.booklibrary.controller.actions.ButtonAction;
 import com.booklibrary.controller.actions.OpenAddBookPageAction;
 import com.booklibrary.controller.actions.OpenMainPageAction;
 import com.booklibrary.model.Book;
+import com.booklibrary.model.Config;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -19,9 +20,11 @@ import static com.booklibrary.utils.Utils.scrollableRoot;
 
 public class BookAddedPage extends Page {
     private final Set<Book> books;
+    private final Config config;
 
-    public BookAddedPage(Set<Book> books) {
+    public BookAddedPage(Config config, Set<Book> books) {
         this.title = "Livro Adicionado";
+        this.config = config;
         this.books = books;
     }
 
@@ -33,8 +36,8 @@ public class BookAddedPage extends Page {
 
         Text text = this.createText("O seu livro foi adicionado com sucesso!");
 
-        ButtonAction openAddBookPageAction = new OpenAddBookPageAction(this.books);
-        ButtonAction openMainPageAction = new OpenMainPageAction(this.books);
+        ButtonAction openAddBookPageAction = new OpenAddBookPageAction(this.config, this.books);
+        ButtonAction openMainPageAction = new OpenMainPageAction(config, this.books);
         Button button1 = openAddBookPageAction.createButton(stage, "Adicionar novo livro");
         Button button2 = openMainPageAction.createButton(stage);
 

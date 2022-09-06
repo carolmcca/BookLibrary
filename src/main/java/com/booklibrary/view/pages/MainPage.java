@@ -3,7 +3,9 @@ package com.booklibrary.view.pages;
 import com.booklibrary.controller.actions.ButtonAction;
 import com.booklibrary.controller.actions.OpenAddBookPageAction;
 import com.booklibrary.controller.actions.OpenSearchBookPageAction;
+import com.booklibrary.controller.actions.OpenSettingsPageAction;
 import com.booklibrary.model.Book;
+import com.booklibrary.model.Config;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -24,9 +26,9 @@ public class MainPage extends Page {
     private final List<ButtonAction> actions;
     private final List<Button> buttons;
 
-    public MainPage(Set<Book> books){
+    public MainPage(Config config, Set<Book> books){
         this.title = "Bem-vindo à sua biblioteca pessoal";
-        this.actions = Arrays.asList(new OpenAddBookPageAction(books), new OpenSearchBookPageAction(books));
+        this.actions = Arrays.asList(new OpenAddBookPageAction(config, books), new OpenSearchBookPageAction(config, books), new OpenSettingsPageAction(config, books));
         this.buttons = new ArrayList<>();
     }
 
