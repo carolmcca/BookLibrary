@@ -5,8 +5,8 @@ import com.booklibrary.model.Database;
 import com.booklibrary.view.pages.LendBookPage;
 
 public class OpenLendBookPageAction extends ButtonAction{
-    public OpenLendBookPageAction(Book book, Database database) {
+    public OpenLendBookPageAction(Database database, Book book) {
         this.buttonText = "Emprestar";
-        this.page = new LendBookPage(book, database);
+        this.page = new LendBookPage(database, book);
     }
 }
