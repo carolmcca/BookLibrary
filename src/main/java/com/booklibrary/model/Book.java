@@ -6,15 +6,18 @@ public class Book implements Comparable<Book>{
     private String author;
     private Integer edition;
     private Integer year;
-    private Person owner;
+    private String owner;
     private Place place;
+    private String lend;
 
-    public Book(String title, String author, Integer edition, Integer year, Place place) {
+    public Book(String title, String author, Integer edition, Integer year, String owner, Place place) {
         this.title = title;
         this.author = author;
         this.edition = edition;
         this.year = year;
+        this.owner = owner;
         this.place = place;
+        this.lend = null;
     }
 
     public void setTitle(String title) {
@@ -29,12 +32,13 @@ public class Book implements Comparable<Book>{
     public void setYear(Integer year) {
         this.year = year;
     }
-    public void setOwner(Person owner) {
+    public void setOwner(String owner) {
         this.owner = owner;
     }
     public void setPlace(Place place) {
         this.place = place;
     }
+    public void setLend(String lend) { this.lend = lend; }
 
     public String getTitle() {
         return title;
@@ -48,16 +52,23 @@ public class Book implements Comparable<Book>{
     public Integer getYear() {
         return year;
     }
-    public Person getOwner() {
+    public String getOwner() {
         return owner;
     }
     public Place getPlace() {
         return place;
     }
+    public String getLend() { return lend; }
 
     @Override
     public String toString() {
-        return this.title + ";" +  this.author + ";" + this.edition + ";" + this.year + ";" + this.place;
+        return (this.title == null ? "" : this.title) + ";"
+                + (this.author == null ? "" : this.author) + ";"
+                + (this.edition == null ? "" : this.edition) + ";"
+                + (this.year == null ? "" : this.year) + ";"
+                + (this.owner == null ? "" : this.owner) + ";"
+                + this.place + ";"
+                + (this.lend == null ? "" : this.lend);
     }
 
     @Override

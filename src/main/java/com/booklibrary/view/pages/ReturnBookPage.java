@@ -6,6 +6,7 @@ import com.booklibrary.model.Database;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -14,14 +15,12 @@ import javafx.stage.Stage;
 
 import static com.booklibrary.utils.Utils.scrollableRoot;
 
-public class DeleteBookPage extends Page {
-    private final Database database;
-    private final Book book;
-
-    public DeleteBookPage(Database database, Book book){
+public class ReturnBookPage extends Page {
+    private Book book;
+    private Database database;
+    public ReturnBookPage(Database database, Book book) {
         this.database = database;
         this.book = book;
-        this.title = "Eliminar livro";
     }
 
     @Override
@@ -30,10 +29,10 @@ public class DeleteBookPage extends Page {
 
         Text title = this.createTitle();
 
-        Text text = this.createText("Tem a certeza que quer eliminar este livro?");
+        Text text = this.createText("Tem a certeza que quer devolver o livro '" + this.book.getTitle() +"' ?");
 
         CompositeAction compositeAction = new CompositeAction();
-        compositeAction.add(new DeleteBookAction(this.database.getBooks(), this.book));
+        compositeAction.add(new ReturnBookAction(this.book));
         compositeAction.add(new OpenSearchBookPageAction(this.database));
         Button yesButton = compositeAction.createButton(stage, "Sim");
         Button noButton = new OpenBookDetailsPageAction(this.database, this.book).createButton(stage, "Não");

@@ -1,9 +1,8 @@
 package com.booklibrary.view.pages;
 
-import com.booklibrary.controller.actions.OpenDeleteBookPageAction;
-import com.booklibrary.controller.actions.OpenEditBookPageAction;
-import com.booklibrary.controller.actions.OpenSearchBookPageAction;
+import com.booklibrary.controller.actions.*;
 import com.booklibrary.model.Book;
+import com.booklibrary.model.Database;
 import com.booklibrary.model.Place;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -15,19 +14,16 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.util.Set;
-
 import static com.booklibrary.utils.Utils.scrollableRoot;
 
 public class BookDetailsPage extends Page {
+    private final Database database;
     private final Book book;
-    private final Set<Book> books;
 
-
-    public BookDetailsPage(Book book, Set<Book> books) {
-        this.title = book.getTitle();
+    public BookDetailsPage(Database database, Book book) {
+        this.database = database;
         this.book = book;
-        this.books = books;
+        this.title = book.getTitle();
     }
 
     @Override
@@ -40,11 +36,13 @@ public class BookDetailsPage extends Page {
         infoHBox.setAlignment(Pos.CENTER);
         infoHBox.setSpacing(40);
 
-        Button backButton = new OpenSearchBookPageAction(this.books).createButton(stage, "Voltar");
-        Button editButton = new OpenEditBookPageAction(books, this.book).createButton(stage);
-        Button deleteButton = new OpenDeleteBookPageAction(books, this.book).createButton(stage);
+        Button backButton = new OpenSearchBookPageAction(this.database).createButton(stage, "Voltar");
+        Button editButton = new OpenEditBookPageAction(this.database, this.book).createButton(stage);
+        Button deleteButton = new OpenDeleteBookPageAction(this.database, this.book).createButton(stage);
+        Button lendButton = new OpenLendBookPageAction(this.database, this.book).createButton(stage);
+        Button returnButton = new OpenReturnBookPageAction(this.database, this.book).createButton(stage);
 
-        HBox buttons = new HBox(backButton, editButton, deleteButton);
+        HBox buttons = new HBox(backButton, editButton, deleteButton, lendButton, returnButton);
 
         buttons.setSpacing(30);
         buttons.setAlignment(Pos.CENTER);
@@ -69,10 +67,12 @@ public class BookDetailsPage extends Page {
                 this.createText("Autor(es):"),
                 this.createText("Edição:"),
                 this.createText("Ano de publicação:"),
+                this.createText("Dono:"),
                 this.createText("Morada:"),
                 this.createText("Divisão:"),
                 this.createText("Armário:"),
-                this.createText("Prateleira:")
+                this.createText("Prateleira:"),
+                this.createText("Emprestado a:")
         );
         vBox.setSpacing(15);
         return vBox;
@@ -85,10 +85,12 @@ public class BookDetailsPage extends Page {
                 this.createText(book.getAuthor()),
                 this.createText(book.getEdition() == null ? "" : String.valueOf(book.getEdition())),
                 this.createText(book.getYear() == null ? "" : String.valueOf(book.getYear())),
+                this.createText(book.getOwner()),
                 this.createText(place.getAddress()),
                 this.createText(place.getRoom()),
                 this.createText(place.getCabinet()),
-                this.createText(place.getShelf())
+                this.createText(place.getShelf()),
+                this.createText(book.getLend() == null ? "Ninguém" : book.getLend())
         );
         vBox.setSpacing(15);
         return vBox;

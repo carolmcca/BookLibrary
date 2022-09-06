@@ -2,6 +2,7 @@ package com.booklibrary.view.pages;
 
 import com.booklibrary.controller.actions.*;
 import com.booklibrary.model.Book;
+import com.booklibrary.model.Database;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -11,13 +12,13 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
-import java.util.Set;
-
 public class EditBookPage extends BookFormPage {
+    private final Database database;
     private final Book book;
 
-    public EditBookPage(Set<Book> books, Book book) {
-        super(books);
+    public EditBookPage(Database database, Book book) {
+        super(database.getBooks());
+        this.database = database;
         this.book = book;
         this.titleControlText = book.getTitle();
         this.authorControlText = book.getAuthor();
@@ -27,6 +28,7 @@ public class EditBookPage extends BookFormPage {
         this.roomControlText = book.getPlace().getRoom();
         this.cabinetControlText = book.getPlace().getCabinet();
         this.shelfControlText = book.getPlace().getShelf();
+        this.ownerControlText = book.getOwner();
     }
 
     @Override
@@ -35,9 +37,9 @@ public class EditBookPage extends BookFormPage {
 
         CompositeAction compositeAction = new CompositeAction();
         compositeAction.add(new EditBookAction(books, book));
-        compositeAction.add(new OpenSearchBookPageAction(books));
+        compositeAction.add(new OpenSearchBookPageAction(this.database));
         Button editButton = compositeAction.createButton(stage, "Editar Livro");
-        Button backButton = new OpenBookDetailsPageAction(this.book, this.books).createButton(stage, "Voltar");
+        Button backButton = new OpenBookDetailsPageAction(this.database, this.book).createButton(stage, "Voltar");
 
         HBox buttons = new HBox(backButton, editButton);
         buttons.setSpacing(30);
