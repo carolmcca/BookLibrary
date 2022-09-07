@@ -18,6 +18,7 @@ public class EditBookPage extends BookFormPage {
 
     public EditBookPage(Database database, Book book) {
         super(database.getBooks());
+        this.title = "Editar Livro";
         this.database = database;
         this.book = book;
         this.titleControlText = book.getTitle();

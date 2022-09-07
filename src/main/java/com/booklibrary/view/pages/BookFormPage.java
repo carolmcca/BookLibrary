@@ -1,6 +1,7 @@
 package com.booklibrary.view.pages;
 
 import com.booklibrary.model.Book;
+import com.booklibrary.model.Place;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -11,6 +12,9 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 
 import static com.booklibrary.utils.Utils.scrollableRoot;
@@ -37,36 +41,8 @@ public class BookFormPage extends Page {
 
         Text pageTitle = this.createTitle();
 
-        Text titleMsg = this.createText("Título:");
-        TextField titleControl = new TextField(this.titleControlText);
-        Text authorMsg = this.createText("Autor(es):");
-        TextField authorControl = new TextField(this.authorControlText);
-        Text editionMsg = this.createText("Edição:");
-        TextField editionControl = new TextField(this.editionControlText);
-        Text yearMsg = this.createText("Ano de publicação:");
-        TextField yearControl = new TextField(this.yearControlText);
-        Text ownerMsg = this.createText("Dono:");
-        TextField ownerControl = new TextField(this.ownerControlText);
-        Text addressMsg = this.createText("Morada:");
-        TextField addressControl = new TextField(this.addressControlText);
-        Text roomMsg = this.createText("Divisão:");
-        TextField roomControl = new TextField(this.roomControlText);
-        Text cabinetMsg = this.createText("Armário:");
-        TextField cabinetControl = new TextField(this.cabinetControlText);
-        Text shelfMsg = this.createText("Prateleira:");
-        TextField shelfControl = new TextField(this.shelfControlText);
-
-
-        VBox msgs = new VBox(titleMsg, authorMsg, editionMsg, yearMsg, ownerMsg, addressMsg, roomMsg, cabinetMsg, shelfMsg);
-        msgs.setAlignment(Pos.CENTER_LEFT);
-        msgs.setSpacing(20);
-
-        VBox controls = new VBox(titleControl, authorControl, editionControl, yearControl, ownerControl, addressControl, roomControl, cabinetControl, shelfControl);
-        controls.setAlignment(Pos.CENTER_LEFT);
-        controls.setSpacing(20);
-
-        HBox hBox = new HBox(msgs, controls);
-        hBox.setSpacing(30);
+        HBox hBox = new HBox(createBookInfoHBox(), createLocalInfoHBox());
+        hBox.setSpacing(100);
         hBox.setAlignment(Pos.CENTER);
 
         borderPane.setTop(pageTitle);
@@ -78,5 +54,83 @@ public class BookFormPage extends Page {
         BorderPane.setMargin(pageTitle, new Insets(30));
 
         return scrollableRoot(borderPane);
+    }
+
+    private HBox createBookInfoHBox() {
+        List<String> msgs = Arrays.asList(
+                "Título:",
+                "Autor(es):",
+                "Edição:",
+                "Ano de publicação:"
+        );
+        List<String> fields = Arrays.asList(
+                this.titleControlText,
+                this.authorControlText,
+                this.editionControlText,
+                this.yearControlText
+        );
+
+        VBox msgsVBox = this.createTextVBox(msgs, true, 15);
+        VBox fieldsVBox = this.createTextFieldVBox(fields, 15);
+
+        HBox bookInfo = new HBox(msgsVBox, fieldsVBox);
+        bookInfo.setSpacing(20);
+        bookInfo.setAlignment(Pos.CENTER);
+
+        return bookInfo;
+    }
+
+    private HBox createLocalInfoHBox() {
+        List<String> msgs = Arrays.asList(
+                "Dono:",
+                "Morada:",
+                "Divisão:",
+                "Armário:",
+                "Prateleira:"
+        );
+        List<String> fields = Arrays.asList(
+                this.ownerControlText,
+                this.addressControlText,
+                this.roomControlText,
+                this.cabinetControlText,
+                this.shelfControlText
+        );
+
+        VBox msgsVBox = this.createTextVBox(msgs, true, 15);
+        VBox fieldsVBox = this.createTextFieldVBox(fields, 15);
+
+        HBox bookInfo = new HBox(msgsVBox, fieldsVBox);
+        bookInfo.setSpacing(20);
+        bookInfo.setAlignment(Pos.CENTER);
+
+        return bookInfo;
+    }
+
+    private VBox createTextVBox(List<String> texts, boolean bold, int spacing) {
+        List<Text> textsText = new ArrayList<>();
+        for (String text : texts) {
+            textsText.add(this.createText(text, bold));
+        }
+
+        VBox vBox = new VBox();
+        vBox.getChildren().addAll(textsText);
+        vBox.setSpacing(spacing);
+        vBox.setAlignment(Pos.CENTER_LEFT);
+
+        return vBox;
+    }
+
+    private VBox createTextFieldVBox(List<String> texts, int spacing) {
+        List<TextField> textsText = new ArrayList<>();
+        for (String text : texts) {
+            textsText.add(new TextField(text));
+        }
+
+        VBox vBox = new VBox();
+        vBox.getChildren().addAll(textsText);
+        vBox.setSpacing(spacing);
+        vBox.setAlignment(Pos.CENTER_LEFT);
+
+        return vBox;
     }
 }

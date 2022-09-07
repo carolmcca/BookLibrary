@@ -16,8 +16,9 @@ import javafx.stage.Stage;
 import static com.booklibrary.utils.Utils.scrollableRoot;
 
 public class ReturnBookPage extends Page {
-    private Book book;
-    private Database database;
+    private final Book book;
+    private final Database database;
+
     public ReturnBookPage(Database database, Book book) {
         this.database = database;
         this.book = book;
