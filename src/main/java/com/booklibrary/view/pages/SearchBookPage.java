@@ -5,6 +5,8 @@ import com.booklibrary.controller.actions.OpenMainPageAction;
 import com.booklibrary.controller.actions.SearchBookAction;
 import com.booklibrary.model.Book;
 import com.booklibrary.model.Database;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -73,8 +75,15 @@ public class SearchBookPage extends Page {
         titleCol.setCellValueFactory(new PropertyValueFactory<Book, String>("title"));
         TableColumn authorCol = new TableColumn("Autor(es)");
         authorCol.setCellValueFactory(new PropertyValueFactory<Book, String>("author"));
+        TableColumn roomCol = new TableColumn("Divisão");
+        roomCol.setCellValueFactory(cellData -> new SimpleStringProperty(((TableColumn.CellDataFeatures<Book, String>)cellData).getValue().getPlace().getRoom()));
+        TableColumn lendCol = new TableColumn("Emprestado");
+        lendCol.setCellValueFactory(cellData -> {
+            String lend = ((TableColumn.CellDataFeatures<Book, String>)cellData).getValue().getLend();
+            return new SimpleStringProperty(lend == null ? "" : lend);
+        });
 
-        table.getColumns().addAll(titleCol, authorCol);
+        table.getColumns().addAll(titleCol, authorCol, roomCol, lendCol);
         table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         table.prefHeightProperty().bind(stage.heightProperty());
         table.prefWidthProperty().bind(stage.widthProperty());
