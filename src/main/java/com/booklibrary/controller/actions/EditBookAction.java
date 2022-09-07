@@ -24,18 +24,20 @@ public class EditBookAction extends ButtonAction {
 
     private void editBook(Stage stage) {
         HBox hBox = (HBox) ((BorderPane)((ScrollPane)stage.getScene().getRoot()).getContent()).getCenter();
-        VBox vBox = (VBox) hBox.getChildren().get(1);
-        var inputs = vBox.getChildren();
 
-        String bookTitle = ((TextField)inputs.get(0)).getText();
-        String bookAuthor = ((TextField)inputs.get(1)).getText();
-        Integer bookEdition = toInteger(((TextField)inputs.get(2)).getText());
-        Integer bookYear = toInteger(((TextField)inputs.get(3)).getText());
-        String bookOwner = ((TextField)inputs.get(4)).getText();
-        String address = ((TextField)inputs.get(5)).getText();
-        String room = ((TextField)inputs.get(6)).getText();
-        String cabinet = ((TextField)inputs.get(7)).getText();
-        String shelf = ((TextField)inputs.get(8)).getText();
+        var inputsInfo = ((VBox)((HBox) hBox.getChildren().get(0)).getChildren().get(1)).getChildren();
+        var inputsLocal = ((VBox)((HBox) hBox.getChildren().get(1)).getChildren().get(1)).getChildren();
+
+        String bookTitle = ((TextField)inputsInfo.get(0)).getText();
+        String bookAuthor = ((TextField)inputsInfo.get(1)).getText();
+        Integer bookEdition = toInteger(((TextField)inputsInfo.get(2)).getText());
+        Integer bookYear = toInteger(((TextField)inputsInfo.get(3)).getText());
+
+        String bookOwner = ((TextField)inputsLocal.get(0)).getText();
+        String address = ((TextField)inputsLocal.get(1)).getText();
+        String room = ((TextField)inputsLocal.get(2)).getText();
+        String cabinet = ((TextField)inputsLocal.get(3)).getText();
+        String shelf = ((TextField)inputsLocal.get(4)).getText();
 
         Place place = new Place(address, room, cabinet, shelf);
         this.book.setTitle(bookTitle);
