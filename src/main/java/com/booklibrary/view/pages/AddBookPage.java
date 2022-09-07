@@ -20,6 +20,7 @@ public class AddBookPage extends BookFormPage {
 
     public AddBookPage(Database database) {
         super(database.getBooks());
+        this.title = "Adicionar Livro";
         this.database = database;
         Config config = database.getConfig();
         this.titleControlText = "";

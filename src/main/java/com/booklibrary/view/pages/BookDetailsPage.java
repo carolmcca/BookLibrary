@@ -14,6 +14,10 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import static com.booklibrary.utils.Utils.scrollableRoot;
 
 public class BookDetailsPage extends Page {
@@ -32,9 +36,9 @@ public class BookDetailsPage extends Page {
 
         Text pageTitle = this.createTitle();
 
-        HBox infoHBox = new HBox(createMessagesVBox(), createInfoVBox(book));
+        HBox infoHBox = new HBox(createBookInfoHBox(), createLocalInfoHBox());
         infoHBox.setAlignment(Pos.CENTER);
-        infoHBox.setSpacing(40);
+        infoHBox.setSpacing(100);
 
         Button backButton = new OpenSearchBookPageAction(this.database).createButton(stage, "Voltar");
         Button editButton = new OpenEditBookPageAction(this.database, this.book).createButton(stage);
@@ -61,39 +65,69 @@ public class BookDetailsPage extends Page {
         return scrollableRoot(borderPane);
     }
 
-    private VBox createMessagesVBox() {
-        VBox vBox = new VBox(
-                this.createText("Título:"),
-                this.createText("Autor(es):"),
-                this.createText("Edição:"),
-                this.createText("Ano de publicação:"),
-                this.createText("Dono:"),
-                this.createText("Morada:"),
-                this.createText("Divisão:"),
-                this.createText("Armário:"),
-                this.createText("Prateleira:"),
-                this.createText("Emprestado a:")
+    private HBox createBookInfoHBox() {
+        List<String> msgs = Arrays.asList(
+                "Título:",
+                "Autor(es):",
+                "Edição:",
+                "Ano de publicação:"
         );
-        vBox.setSpacing(15);
-        return vBox;
+        List<String> infos = Arrays.asList(
+                this.book.getTitle(),
+                this.book.getAuthor(),
+                this.book.getEdition() == null ? "" : String.valueOf(book.getEdition()),
+                book.getYear() == null ? "" : String.valueOf(book.getYear())
+        );
+
+        VBox msgsVBox = this.createVBox(msgs, true, 15);
+        VBox infosVBox = this.createVBox(infos, false, 15);
+
+        HBox bookInfo = new HBox(msgsVBox, infosVBox);
+        bookInfo.setSpacing(20);
+
+        return bookInfo;
     }
 
-    private VBox createInfoVBox(Book book) {
-        Place place = book.getPlace();
-        VBox vBox = new VBox(
-                this.createText(book.getTitle()),
-                this.createText(book.getAuthor()),
-                this.createText(book.getEdition() == null ? "" : String.valueOf(book.getEdition())),
-                this.createText(book.getYear() == null ? "" : String.valueOf(book.getYear())),
-                this.createText(book.getOwner()),
-                this.createText(place.getAddress()),
-                this.createText(place.getRoom()),
-                this.createText(place.getCabinet()),
-                this.createText(place.getShelf()),
-                this.createText(book.getLend() == null ? "Ninguém" : book.getLend())
+    private HBox createLocalInfoHBox() {
+        Place place = this.book.getPlace();
+
+        List<String> msgs = Arrays.asList(
+                "Dono:",
+                "Morada:",
+                "Divisão:",
+                "Armário:",
+                "Prateleira:",
+                "Emprestado a:"
         );
-        vBox.setSpacing(15);
-        return vBox;
+        List<String> infos = Arrays.asList(
+                this.book.getOwner(),
+                place.getAddress(),
+                place.getRoom(),
+                place.getCabinet(),
+                place.getShelf(),
+                this.book.getLend() == null ? "Ninguém" : this.book.getLend()
+        );
+
+        VBox msgsVBox = this.createVBox(msgs, true, 15);
+        VBox infosVBox = this.createVBox(infos, false, 15);
+
+        HBox bookInfo = new HBox(msgsVBox, infosVBox);
+        bookInfo.setSpacing(20);
+
+        return bookInfo;
     }
 
+    private VBox createVBox(List<String> texts, boolean bold, int spacing) {
+        List<Text> textsText = new ArrayList<>();
+        for (String text : texts) {
+            textsText.add(this.createText(text, bold));
+        }
+
+        VBox vBox = new VBox();
+        vBox.getChildren().addAll(textsText);
+        vBox.setSpacing(spacing);
+        vBox.setAlignment(Pos.CENTER_LEFT);
+
+        return vBox;
+    }
 }
