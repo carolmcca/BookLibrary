@@ -14,6 +14,11 @@ public class Utils {
     }
 
     public static void writeToFile(String filename, String text, boolean overwrite) {
+        int li = filename.lastIndexOf("/");
+        File directory = new File(filename.substring(0, li));
+        if (!directory.exists()){
+            directory.mkdir();
+        }
         try {
             File file = new File(filename);
             file.createNewFile();
