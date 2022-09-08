@@ -49,7 +49,7 @@ public class SearchBookAction extends ButtonAction {
             for (Book book : books) {
                 int occurrences = 0;
                 for (String word : words) {
-                    if (containsIgnoreCase(book.getTitle(), word) || containsIgnoreCase(book.getAuthor(), word))
+                    if (containsIgnoreCase(book.getTitle(), word) || containsIgnoreCase(book.getAuthor(), word) || containsIgnoreCase(book.getCollection(), word))
                         occurrences++;
                 }
                 if (occurrences > 0) {

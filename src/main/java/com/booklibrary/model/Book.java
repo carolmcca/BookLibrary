@@ -4,15 +4,17 @@ package com.booklibrary.model;
 public class Book implements Comparable<Book>{
     private String title;
     private String author;
+    private String collection;
     private Integer edition;
     private Integer year;
     private String owner;
     private Place place;
     private String lend;
 
-    public Book(String title, String author, Integer edition, Integer year, String owner, Place place) {
+    public Book(String title, String author, String collection, Integer edition, Integer year, String owner, Place place) {
         this.title = title;
         this.author = author;
+        this.collection = collection;
         this.edition = edition;
         this.year = year;
         this.owner = owner;
@@ -26,6 +28,7 @@ public class Book implements Comparable<Book>{
     public void setAuthor(String author) {
         this.author = author;
     }
+    public void setCollection(String collection) { this.collection = collection; }
     public void setEdition(Integer edition) {
         this.edition = edition;
     }
@@ -46,6 +49,7 @@ public class Book implements Comparable<Book>{
     public String getAuthor() {
         return author;
     }
+    public String getCollection() { return collection; }
     public Integer getEdition() {
         return edition;
     }
@@ -64,6 +68,7 @@ public class Book implements Comparable<Book>{
     public String toString() {
         return (this.title == null ? "" : this.title) + ";"
                 + (this.author == null ? "" : this.author) + ";"
+                + (this.collection == null ? "" : this.collection) + ";"
                 + (this.edition == null ? "" : this.edition) + ";"
                 + (this.year == null ? "" : this.year) + ";"
                 + (this.owner == null ? "" : this.owner) + ";"

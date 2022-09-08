@@ -69,12 +69,14 @@ public class BookDetailsPage extends Page {
         List<String> msgs = Arrays.asList(
                 "Título:",
                 "Autor(es):",
+                "Coleção: ",
                 "Edição:",
                 "Ano de publicação:"
         );
         List<String> infos = Arrays.asList(
                 this.book.getTitle(),
                 this.book.getAuthor(),
+                this.book.getCollection(),
                 this.book.getEdition() == null ? "" : String.valueOf(book.getEdition()),
                 book.getYear() == null ? "" : String.valueOf(book.getYear())
         );

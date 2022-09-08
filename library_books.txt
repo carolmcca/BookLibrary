@@ -1,8 +1,4 @@
-Carochinha;Carol;2;;Henrique Nunes;Oii|||;Zeca
-Feel weak;Eminem;;;;|||;
-Give up;Eminem;;;;|||;
-Mais outro;Carike;;;;Rua de Bustes|||;
-O joão e o pé de feijão;Euzinha;3;;Henrique Nunes;Oii|||;
-Outro;Carol;;;;Rua de Bustes 10|||;
-Sonasol;Rikol;;;;Rua de Bustes|||;
-Tit;Henrique;;;;Rua de Bustes|||;
+A Carol gosta do Rike;Cupido;;;;Henrique Nunes;Oii|||;Rike
+O joão e o pé de feijão;Carol;Os três porquinhos;;;Henrique Nunes;Oii|||;
+coco;;Os três porquinhos;;;Henrique Nunes;Oii|||;
+olá;;;;;Henrique Nunes;Oii|||;

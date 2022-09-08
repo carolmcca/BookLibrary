@@ -25,6 +25,7 @@ public class AddBookPage extends BookFormPage {
         Config config = database.getConfig();
         this.titleControlText = "";
         this.authorControlText = "";
+        this.collectionControlText = "";
         this.editionControlText = "";
         this.yearControlText = "";
         this.ownerControlText = config.getLibraryOwner();
