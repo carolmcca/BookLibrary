@@ -30,8 +30,9 @@ public class EditBookAction extends ButtonAction {
 
         String bookTitle = ((TextField)inputsInfo.get(0)).getText();
         String bookAuthor = ((TextField)inputsInfo.get(1)).getText();
-        Integer bookEdition = toInteger(((TextField)inputsInfo.get(2)).getText());
-        Integer bookYear = toInteger(((TextField)inputsInfo.get(3)).getText());
+        String bookCollection = ((TextField)inputsInfo.get(2)).getText();
+        Integer bookEdition = toInteger(((TextField)inputsInfo.get(3)).getText());
+        Integer bookYear = toInteger(((TextField)inputsInfo.get(4)).getText());
 
         String bookOwner = ((TextField)inputsLocal.get(0)).getText();
         String address = ((TextField)inputsLocal.get(1)).getText();
@@ -42,6 +43,7 @@ public class EditBookAction extends ButtonAction {
         Place place = new Place(address, room, cabinet, shelf);
         this.book.setTitle(bookTitle);
         this.book.setAuthor(bookAuthor);
+        this.book.setCollection(bookCollection);
         this.book.setEdition(bookEdition);
         this.book.setYear(bookYear);
         this.book.setOwner(bookOwner);

@@ -29,8 +29,9 @@ public class AddBookAction extends ButtonAction{
 
         String bookTitle = ((TextField)inputsInfo.get(0)).getText();
         String bookAuthor = ((TextField)inputsInfo.get(1)).getText();
-        Integer bookEdition = toInteger(((TextField)inputsInfo.get(2)).getText());
-        Integer bookYear = toInteger(((TextField)inputsInfo.get(3)).getText());
+        String bookCollection = ((TextField)inputsInfo.get(2)).getText();
+        Integer bookEdition = toInteger(((TextField)inputsInfo.get(3)).getText());
+        Integer bookYear = toInteger(((TextField)inputsInfo.get(4)).getText());
 
         String bookOwner = ((TextField)inputsLocal.get(0)).getText();
         String address = ((TextField)inputsLocal.get(1)).getText();
@@ -39,7 +40,7 @@ public class AddBookAction extends ButtonAction{
         String shelf = ((TextField)inputsLocal.get(4)).getText();
 
         Place place = new Place(address, room, cabinet, shelf);
-        Book book = new Book(bookTitle, bookAuthor, bookEdition, bookYear, bookOwner, place);
+        Book book = new Book(bookTitle, bookAuthor, bookCollection, bookEdition, bookYear, bookOwner, place);
         this.books.add(book);
     }
 

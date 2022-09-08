@@ -37,13 +37,14 @@ public class DatabaseManager {
                 String data = myReader.nextLine();
                 String[] attributes = data.split(";", -1);
 
-                Place place = loadPlace(attributes[5]);
+                Place place = loadPlace(attributes[6]);
                 String title = isNull(attributes[0]) ? null : attributes[0];
                 String author = isNull(attributes[1]) ? null : attributes[1];
-                Integer edition = isNull(attributes[2]) ? null : Integer.parseInt(attributes[2]);
-                Integer year = isNull(attributes[3]) ? null : Integer.parseInt(attributes[3]);
-                String owner = isNull(attributes[4]) ? null : attributes[4];
-                Book book = new Book(title, author, edition, year, owner, place);
+                String collection = isNull(attributes[2]) ? null : attributes[2];
+                Integer edition = isNull(attributes[3]) ? null : Integer.parseInt(attributes[3]);
+                Integer year = isNull(attributes[4]) ? null : Integer.parseInt(attributes[4]);
+                String owner = isNull(attributes[5]) ? null : attributes[5];
+                Book book = new Book(title, author, collection, edition, year, owner, place);
 
                 this.database.getBooks().add(book);
             }

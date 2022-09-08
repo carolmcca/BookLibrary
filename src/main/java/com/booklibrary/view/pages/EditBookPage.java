@@ -23,6 +23,7 @@ public class EditBookPage extends BookFormPage {
         this.book = book;
         this.titleControlText = book.getTitle();
         this.authorControlText = book.getAuthor();
+        this.collectionControlText = book.getCollection();
         this.editionControlText = book.getEdition() == null ? "" : String.valueOf(book.getEdition());
         this.yearControlText = book.getYear() == null ? "" : String.valueOf(book.getYear());
         this.addressControlText = book.getPlace().getAddress();

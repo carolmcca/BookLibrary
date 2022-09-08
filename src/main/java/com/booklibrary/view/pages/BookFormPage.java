@@ -23,6 +23,7 @@ public class BookFormPage extends Page {
     protected final Set<Book> books;
     protected String titleControlText;
     protected String authorControlText;
+    protected String collectionControlText;
     protected String editionControlText;
     protected String yearControlText;
     protected String roomControlText;
@@ -60,12 +61,14 @@ public class BookFormPage extends Page {
         List<String> msgs = Arrays.asList(
                 "Título:",
                 "Autor(es):",
+                "Coleção: ",
                 "Edição:",
                 "Ano de publicação:"
         );
         List<String> fields = Arrays.asList(
                 this.titleControlText,
                 this.authorControlText,
+                this.collectionControlText,
                 this.editionControlText,
                 this.yearControlText
         );
