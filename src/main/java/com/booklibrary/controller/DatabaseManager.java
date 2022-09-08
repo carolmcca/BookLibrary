@@ -13,8 +13,8 @@ import java.util.Set;
 import static com.booklibrary.utils.Utils.*;
 
 public class DatabaseManager {
-    private static final String booksFilename = "library_books.txt";
-    private static final String configFilename = "library_config.txt";
+    private static final String booksFilename = "Saves/library_books.txt";
+    private static final String configFilename = "Saves/library_config.txt";
     private final Database database;
 
     public DatabaseManager(Database database) {
